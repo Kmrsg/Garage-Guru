@@ -8,14 +8,14 @@ import { useSelector } from 'react-redux';
 // import ModalQuest from '../features/modalka/ModalQuest';
 // import NavBar from '../features/NavBar';
 import MainPage from '../features/main/MainPage';
-import { RootState, useAppDispatch } from '../redux/store';
+import { useAppDispatch } from '../redux/store';
 import * as api from './api';
 import ErrorWindow from '../404/ErrorWindow';
 import LogReg from '../features/LogReg/LogReg';
 import NavBar from '../features/Navbar/NavBar';
 import type { User } from '../redux/type';
 import { fetchUser } from '../features/LogReg/api/api';
-import { Data } from '../features/LogReg/types';
+import type { Data } from '../features/LogReg/types';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
