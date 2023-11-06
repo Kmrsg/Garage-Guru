@@ -1,3 +1,4 @@
+/* eslint-disable no-return-assign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { Sale, SaleId, ServicesState } from './types/type';
 import * as api from './api/api';
