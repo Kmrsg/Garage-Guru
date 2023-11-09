@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 
+import type { ServiceCard } from '../../service/types/type';
 import type { Service, User } from '../type';
 
 export const fetchLogOut = async (): Promise<{ message: string }> => {
@@ -71,7 +72,7 @@ export const fetchCheckUser = async (): Promise<{ message: string; user: User }>
   return data;
 };
 
-export const fetchCheckService = async (): Promise<{ message: string; service: Service }> => {
+export const fetchCheckService = async (): Promise<{ message: string; service: ServiceCard }> => {
   const res = await fetch('/api/auth/check/service');
   if (res.status > 399) {
     throw new Error('Такого сервиса не существует или пароль неверный');

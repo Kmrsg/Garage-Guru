@@ -10,7 +10,7 @@ const { Mark } = require("../../db/models");
 router.post("/", async (req, res) => {
   try {
     const { user_id, service_id, data, uslugaPrice_id } = req.body;
-    console.log(req.body);
+    // console.log(req.body);
 
     const activeOrder = await Order.findOne({
       where: {
@@ -18,11 +18,11 @@ router.post("/", async (req, res) => {
       },
     });
     if (!activeOrder) {
-      console.log("0000000");
+      // console.log("0000000");
       const order = await Order.create({
         user_id: user_id,
       });
-      console.log(order);
+      // console.log(order);
       const orderItem = await OrderItem.create({
         order_id: order.id,
         uslugaPrice_id: uslugaPrice_id,
@@ -40,7 +40,7 @@ router.post("/", async (req, res) => {
     }
 
     if (activeOrder) {
-      console.log("/////");
+      // console.log("/////");
       const active = await OrderItem.findOne({
         where: { order_id: activeOrder.id, uslugaPrice_id, isClosed: false },
       });
@@ -78,7 +78,7 @@ router.get("/", async (req, res) => {
         include: { model: UslugaPrice, include: [Usluga, CarModel, Mark] },
       },
     });
-    console.log(orders);
+    // console.log(orders);
     res.json(orders);
   } catch (error) {
     console.error(error);

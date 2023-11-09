@@ -1,22 +1,27 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable array-callback-return */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import type { Service } from '../LogReg/type';
 import { useAppDispatch, type RootState } from '../../redux/store';
 import Calendarr from './Calendar';
-import { updatePhoto } from '../LogReg/AuthSlice';
+import { checkService, updatePhoto } from '../LogReg/AuthSlice';
+import type { OrderItemID, UpdateStatus } from './type';
+import { loadOrderItems } from './PersonalSlice';
+import { updateStatusOrderItem } from '../service/servicesSlice';
 
 function PersonalArea(): JSX.Element {
   const [photo, setPhoto] = useState(true);
+  const [widt, setWidt] = useState(true);
   const dispatch = useAppDispatch();
   const service = useSelector((store: RootState) => store.auth.service);
-  const user = useSelector((store: RootState) => store.auth.user);
   const [img, setImg] = useState(service?.img);
-
-  // const handleServicePut = (e: React.MouseEvent<HTMLButtonElement>): void => {
-  //   e.preventDefault();
-  //   dispatch(updatePhoto({ img, id: service?.id }));
-  // };
+  const [selectedOption, setSelectedOption] = useState(false);
+  const asd = useSelector((store: RootState) => store.servicesSlice.services).find(
+    (servs) => servs.id === service?.id,
+  );
+  const uslugaPrice = asd?.UslugaPrices;
 
   const navigate = useNavigate();
 
@@ -31,9 +36,20 @@ function PersonalArea(): JSX.Element {
     dispatch(updatePhoto({ img, id: service?.id }));
     throw new Error('Function not implemented.');
   }
+  const uslovie = uslugaPrice?.filter(
+    (el) => el.OrderItems.filter((elem) => elem.isClosed === selectedOption).length > 0,
+  );
+
+  const OnHandleUpdateStatusOrder = (obj: UpdateStatus): void => {
+    if (service?.id) {
+      dispatch(updateStatusOrderItem(obj));
+    }
+  };
+
 
   return (
-    <div className='servicelk'>
+    <div style={{ display: 'flex', flexDirection: 'row', marginLeft: '-20vw' }}>
+       <div className='servicelk'>
       <h1 className='head' >Личный кабинет автосервиса</h1>
       <img style={{ width: '400px' }} src={service?.img} alt="photka" />
 
@@ -78,17 +94,104 @@ function PersonalArea(): JSX.Element {
       <div className='iteminfo'>{service?.tarif}</div>
       </div>
 
-      
-    
-      
-      
-    
-    
-  
-      <button className='btn' type="submit" onClick={() => navigate(`/services/${service.id}`)}>
+           <button className='btn' type="submit" onClick={() => navigate(`/services/${service.id}`)}>
         Добавить услуги
       </button>
       <Calendarr />
+        <div style={{ color: 'white', fontSize: '13px' }}>
+          <button
+            style={{ width: '30vw' }}
+            type="submit"
+            onClick={() => {
+              setWidt(!widt);
+            }}
+          >
+            Мои Записи
+          </button>
+          {widt && (
+            <div style={{ color: 'white' }}>
+              <div>
+                Сортировка:
+                <select
+                  style={{
+                    height: '40px',
+                    width: '300px',
+                    backgroundColor: 'white',
+                    color: 'black',
+                    marginBottom: '20px',
+                    borderRadius: '7px',
+                  }}
+                  onChange={() => setSelectedOption(!selectedOption)}
+                >
+                  <option disabled value="Сортировать заявки">
+                    Сортировать заявки
+                  </option>
+                  <option value="Активные" style={{ fontSize: '13px' }}>
+                    Активные
+                  </option>
+                  <option value="Архивные" style={{ fontSize: '13px' }}>
+                    Архивные
+                  </option>
+                </select>
+              </div>
+              <div style={{ backgroundColor: 'white', color: 'black', fontSize: '2vh' }}>
+                {uslugaPrice &&
+                  uslovie.map((el) => (
+                    <div style={{ display: 'flex', flexDirection: 'row', width: '50vw' }}>
+                      <div
+                        style={{
+                          backgroundColor: 'white',
+                          // marginBottom: '20px',
+                          paddingBottom: '20px',
+                          color: 'black',
+                          display: 'flex',
+                          flexDirection: 'column',
+                        }}
+                      >
+                        <div>Марка авто: {el.Mark.title}</div>
+                        <div>Модель авто: {el.CarModel.title}</div>
+                        <div>Цена услуги: {el.cost} </div>
+                        <div>Usluga {el.Usluga.title}</div>
+                        <div style={{ display: 'flex', flexDirection: 'row' }}>
+                          Услуги:
+                          {el.OrderItems.map(
+                            (elem) =>
+                              elem.isClosed === selectedOption && (
+                                <div style={{ display: 'flex', flexDirection: 'row' }}>
+                                  <div>
+                                    <div>Дата записи: {elem.date}</div>
+                                    <div>Имя клиента: {elem.Order.User.name}</div>
+                                    <div>Email: {elem.Order.User.email}</div>
+                                    <div>
+                                      Статус заказа:{' '}
+                                      {elem.isClosed ? <div>Архивный</div> : <div>Активный</div>}
+                                    </div>
+                                  </div>
+                                  <button
+                                    type="button"
+                                    style={{ width: '20vw', height: '10vh', fontSize: '15px' }}
+                                    onClick={() =>
+                                      OnHandleUpdateStatusOrder({
+                                        orderItem_id: elem.id,
+                                        uslugaPrice_id: el.id,
+                                      })
+                                    }
+                                  >
+                                    Изменить статус Заказа
+                                  </button>
+                                </div>
+                              ),
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          )}
+        </div>
+        {/* <Calendarr /> */}
+      </div>
     </div>
   );
 }

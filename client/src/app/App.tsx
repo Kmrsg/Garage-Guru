@@ -24,6 +24,7 @@ import { loadSales } from '../features/sales/salesSlice';
 import SalesPage from '../features/sales/SalesPage';
 import PersonalAreaPerson from '../features/personalArea/PersonalAreaPerson';
 import ErrorPage from '../features/404/404';
+import { loadOrderItems, loadUslugasOrder } from '../features/personalArea/PersonalSlice';
 
 function App(): JSX.Element {
   const [isPageClickable, setIsPageClickable] = useState(false);
@@ -34,6 +35,7 @@ function App(): JSX.Element {
     dispatch(loadServices());
     dispatch(loadPosts());
     dispatch(checkService());
+    dispatch(loadUslugasOrder());
   }, []);
 
   useEffect(() => {
@@ -43,6 +45,8 @@ function App(): JSX.Element {
     dispatch(loadPrices());
     dispatch(loadSales());
     dispatch(loadOrder());
+    dispatch(loadUslugasOrder());
+    dispatch(loadOrderItems());
   }, []);
 
   useEffect(() => {
