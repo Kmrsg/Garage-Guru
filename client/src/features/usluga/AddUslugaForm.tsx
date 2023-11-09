@@ -35,13 +35,17 @@ export default function AddUslugaForm({ service }: { service: ServiceCard }): JS
         id: 100,
       }),
     );
+    setMarka('');
+    setCost('');
+    setModel('');
+    setUsluga('');
   };
 
   return (
     <div className="uslugas">
       <form id="usluga" onSubmit={onHandleAdd}>
-        <select name="usluga" onChange={(e) => setUsluga(e.target.value)}>
-          <option value="1">Выберите услугу</option>
+        <select name="usluga" value={usluga} onChange={(e) => setUsluga(e.target.value)}>
+          <option value="">Выберите услугу</option>
           {uslugas.map((uslugaa) => (
             <option key={uslugaa.id} value={uslugaa.title}>
               {uslugaa.title}
@@ -50,6 +54,7 @@ export default function AddUslugaForm({ service }: { service: ServiceCard }): JS
         </select>
         <select
           name="mark"
+          value={marka}
           id="mark"
           onChange={(e) => {
             setMarka(e.target.value);
@@ -62,7 +67,7 @@ export default function AddUslugaForm({ service }: { service: ServiceCard }): JS
             </option>
           ))}
         </select>
-        <select name="model" onChange={(e) => setModel(e.target.value)}>
+        <select name="model" value={model} onChange={(e) => setModel(e.target.value)}>
           <option value="">Выберите модель авто</option>
           {marka !== '' &&
             marks.map(

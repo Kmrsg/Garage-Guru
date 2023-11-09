@@ -22,6 +22,7 @@ export default function CommentsContainer({ service }: { service: ServiceCard })
     if (user && text.trim() && rating > 0) {
       dispatch(addComments({ service_id: service.id, user_id: user.id!, text, rate: rating }));
       setText('');
+      console.log(service.Comments[service.Comments.length - 1]);
     } else {
       setErr('Заполните все поля!');
     }

@@ -62,7 +62,7 @@ router.put('/:uslugaPriceId', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    if (req.session.service_id) {
+    if (req.session.serviceId) {
       const { carModel_id, mark_id, service_id, cost, usluga_id } = req.body;
       const uslugaPrice = await UslugaPrice.create({
         carModel_id,

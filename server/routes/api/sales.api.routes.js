@@ -33,6 +33,7 @@ router.delete('/:saleId', async (req, res) => {
     if (sale) {
       if (req.session.serviceId === sale.service_id) {
         const service_id = sale.service_id;
+        console.log(sale);
         const result = await Sale.destroy({ where: { id: +saleId } });
         if (result > 0) {
           res.json({ saleId: +saleId, service_id });
