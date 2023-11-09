@@ -6,7 +6,7 @@ const initialState: SalesState = {
   sales: [],
   error: null,
   loading: true,
-  city: 'Санкт-петербург',
+  city: 'Санкт-Петербург',
 };
 
 export const loadSales = createAsyncThunk('sales/load', () => api.fetchSales());

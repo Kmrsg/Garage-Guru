@@ -1,13 +1,4 @@
-import type { Order } from 'sequelize';
-import type {
-  Mark,
-  OrderAdd,
-  OrderAndUslugaAndMArk,
-  OrderItemAdd,
-  Usluga,
-  UslugaPrice,
-  UslugasAdd,
-} from './types/types';
+import type { Mark, OrderAdd, Usluga, UslugaPrice, UslugaPriceAdd } from './types/types';
 
 export async function fetchOrdersLoad(): Promise<OrderAdd[]> {
   const res = await fetch('/api/order');
@@ -43,7 +34,7 @@ export async function fetchMarks(): Promise<Mark[]> {
   return res.json();
 }
 
-export async function fetchAddUslugas(uslugaPrice: UslugaPrice): Promise<UslugaPrice> {
+export async function fetchAddUslugas(uslugaPrice: UslugaPriceAdd): Promise<UslugaPrice> {
   const res = await fetch('/api/uslugasPrice', {
     method: 'POST',
     headers: { 'Content-type': 'application/json' },
@@ -62,7 +53,7 @@ export async function fetchUslugaPriceDelete(id: number): Promise<number> {
   return res.json();
 }
 
-export async function fetchUpdUslugas(uslugaPrice: UslugaPrice): Promise<UslugaPrice> {
+export async function fetchUpdUslugas(uslugaPrice: UslugaPriceAdd): Promise<UslugaPrice> {
   const res = await fetch(`/api/uslugasPrice/${uslugaPrice.id}`, {
     method: 'PUT',
     headers: { 'Content-type': 'application/json' },

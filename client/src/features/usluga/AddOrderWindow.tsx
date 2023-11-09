@@ -31,7 +31,7 @@ function AddOrderWindow({
 
       dispatch(
         addOrder({
-          user_id: authUser.id,
+          user_id: authUser.id!,
           service_id: price.service_id,
           data: dateTimeValue,
           uslugaPrice_id: price.id,

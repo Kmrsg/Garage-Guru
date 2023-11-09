@@ -1,6 +1,6 @@
 import type { Post } from '../../news/types/Post';
 
-export const fetchPostAdd = async (post: Post): Promise<Post> => {
+const fetchPostAdd = async (post: Post): Promise<Post> => {
   const res = await fetch('/api/news', {
     method: 'POST',
     headers: {
@@ -10,3 +10,4 @@ export const fetchPostAdd = async (post: Post): Promise<Post> => {
   });
   return res.json();
 };
+export default fetchPostAdd;

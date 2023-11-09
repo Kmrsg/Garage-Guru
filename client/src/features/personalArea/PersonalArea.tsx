@@ -41,12 +41,7 @@ function PersonalArea(): JSX.Element {
         <>
           <input placeholder="url image" value={img} onChange={(e) => setImg(e.target.value)} />
           <div>или</div>
-          <input
-            style={{ width: '300px' }}
-            type="file"
-            accept="image/*"
-            onChange={(e) => handleFileChange(e)}
-          />
+
           <button type="button" onClick={(e) => handleServicePut(e)}>
             save
           </button>
@@ -57,7 +52,7 @@ function PersonalArea(): JSX.Element {
       <div>Email: {service?.email}</div>
       <div>Номер телефона: {service?.phone}</div>
       <div>Ваш тариф: {service?.tarif}</div>
-      <button type="submit" onClick={() => navigate(`/services/${service.id}`)}>
+      <button type="submit" onClick={() => navigate(`/services/${service!.id!}`)}>
         Добавить услуги
       </button>
       <Calendarr />

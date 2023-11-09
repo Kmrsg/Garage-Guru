@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import ReactStars from 'react-rating-stars-component';
-import type { RootState } from '../../redux/store';
+import { RootState, useAppDispatch } from '../../redux/store';
 import CommentItem from './CommentItem';
 import { addComments } from './servicesSlice';
 import type { ServiceCard } from './types/type';
@@ -10,7 +10,7 @@ export default function CommentsContainer({ service }: { service: ServiceCard })
   const [text, setText] = useState('');
   const [rating, setRating] = useState(0);
   const [err, setErr] = useState('');
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const user = useSelector((store: RootState) => store.auth.user);
   const rate = service.Rates.find((ratee) => ratee.user_id === user?.id);
   const onHandleRate = (newRate: number): void => {
@@ -20,7 +20,7 @@ export default function CommentsContainer({ service }: { service: ServiceCard })
     setErr('');
     e.preventDefault();
     if (user && text.trim() && rating > 0) {
-      dispatch(addComments({ service_id: service.id, user_id: user.id, text, rate: rating }));
+      dispatch(addComments({ service_id: service.id, user_id: user.id!, text, rate: rating }));
       setText('');
     } else {
       setErr('Заполните все поля!');

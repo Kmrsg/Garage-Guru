@@ -17,7 +17,6 @@ export const fetchSignIn = async (user: User): Promise<{ message: string; user: 
     },
     body: JSON.stringify(user),
   });
-  await new Promise((resolve) => setTimeout(resolve, 1000));
   return res.json();
 };
 
@@ -62,7 +61,6 @@ export const fetchSignUpService = async (service: Service): Promise<Service> => 
 
 export const fetchCheckUser = async (): Promise<{ message: string; user: User }> => {
   const res = await fetch('/api/auth/check');
-  // await new Promise((resolve) => setTimeout(resolve, 1000));
   if (res.status > 399) {
     throw new Error('Такого сервиса не существует или пароль неверный');
   }

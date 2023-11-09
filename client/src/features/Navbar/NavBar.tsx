@@ -33,8 +33,9 @@ function NavBar(): JSX.Element {
               onChange={(e) => dispatch(chooseCity(e.target.value))}
               id="group"
               name="groupGold"
+              defaultValue="Санкт-Петербург"
             >
-              <option className="gold" value="Санкт-петербург">
+              <option className="gold" value="Санкт-Петербург">
                 Санкт-Петербург
               </option>
               <option className="gold" value="Москва">

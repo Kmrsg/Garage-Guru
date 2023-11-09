@@ -13,6 +13,7 @@ export type ServiceCard = {
   Comments: Comment[];
   Rates: Rate[];
   isChecked: boolean;
+  tarif: string;
 };
 export type Comment = {
   id: number;

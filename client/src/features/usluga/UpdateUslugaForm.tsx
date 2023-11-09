@@ -32,9 +32,9 @@ export default function UpdateUslugaForm({
     dispatch(
       updPrice({
         id: price.id,
-        mark_id,
-        carModel_id: model_id,
-        usluga_id,
+        mark_id: mark_id!,
+        carModel_id: model_id!,
+        usluga_id: usluga_id!,
         cost: +cost,
         service_id: price.service_id,
       }),
@@ -43,9 +43,14 @@ export default function UpdateUslugaForm({
   };
 
   return (
-    <div className='uslugadiv'>
+    <div className="uslugadiv">
       <form id="usluga" onSubmit={onHandleUpd}>
-        <select className='uslugaselect' name="usluga" defaultValue={usluga} onChange={(e) => setUsluga(e.target.value)}>
+        <select
+          className="uslugaselect"
+          name="usluga"
+          defaultValue={usluga}
+          onChange={(e) => setUsluga(e.target.value)}
+        >
           <option value="1">Выберите услугу</option>
           {uslugas.map((uslugaa) => (
             <option key={uslugaa.id} value={uslugaa.title}>
@@ -53,7 +58,8 @@ export default function UpdateUslugaForm({
             </option>
           ))}
         </select>
-        <select className='uslugaselect'
+        <select
+          className="uslugaselect"
           name="mark"
           id="mark"
           defaultValue={marka}
@@ -68,7 +74,12 @@ export default function UpdateUslugaForm({
             </option>
           ))}
         </select>
-        <select className='uslugaselect' name="model" defaultValue={model} onChange={(e) => setModel(e.target.value)}>
+        <select
+          className="uslugaselect"
+          name="model"
+          defaultValue={model}
+          onChange={(e) => setModel(e.target.value)}
+        >
           <option value="">Выберите модель авто</option>
           {marka !== '' &&
             marks.map(

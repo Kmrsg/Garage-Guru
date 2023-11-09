@@ -13,11 +13,6 @@ function SignInService(): JSX.Element {
   const [submitted, setSubmitted] = useState(false);
 
   const dispatch = useAppDispatch();
-  //   const onHandleSignIn = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
-  //     e.preventDefault();
-  //     setPhone(phone.replace(/-/g, ''));
-  //     dispatch(signUp({ name, password, phone, email }));
-  //   };
   const service = useSelector((strore: RootState) => strore.auth);
   const onHandleServiceIn = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();

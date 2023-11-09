@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import React from 'react';
-import type { Service } from '../LogReg/type';
 import { useAppDispatch } from '../../redux/store';
 import { deleteOneService, upStatusService } from '../service/servicesSlice';
+import { ServiceCard } from '../service/types/type';
 
-function ServicesItemAdmin({ servic }: { servic: Service }): JSX.Element {
+function ServicesItemAdmin({ servic }: { servic: ServiceCard }): JSX.Element {
   const dispatch = useAppDispatch();
 
   const updateStatusService = (): void => {
@@ -31,7 +32,7 @@ function ServicesItemAdmin({ servic }: { servic: Service }): JSX.Element {
       <div>Email: {servic?.email}</div>
       <div>Салон: {servic?.title}</div>
       <div>Купленный тариф: {servic?.tarif}$</div>
-      <div>Статус подтверждения: {`${servic?.isChecked}`}</div>
+      <div>Статус подтверждения: {`${servic.isChecked}`}</div>
       <button
         type="submit"
         style={{ backgroundColor: 'black', color: 'white' }}
