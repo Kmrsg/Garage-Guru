@@ -62,7 +62,7 @@ export default function PriceItem({ price }: { price: UslugaPrice }): JSX.Elemen
           <button
             className="btn"
             type="button"
-            style={{ background: 'red' }}
+          
             onClick={onHandleDelete}
           >
             Удалить услугу

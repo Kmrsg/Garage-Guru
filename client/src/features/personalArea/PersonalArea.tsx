@@ -46,14 +46,12 @@ function PersonalArea(): JSX.Element {
     }
   };
 
-
   return (
-    <div style={{ display: 'flex', flexDirection: 'row', marginLeft: '-20vw' }}>
-       <div className='servicelk'>
-      <h1 className='head' >Личный кабинет автосервиса</h1>
+    <div className="servicelk">
+      <h1 className="head">Личный кабинет автосервиса</h1>
       <img style={{ width: '400px' }} src={service?.img} alt="photka" />
 
-      <button className='btn' type="submit" onClick={() => setPhoto(!photo)}>
+      <button className="btn" type="submit" onClick={() => setPhoto(!photo)}>
         Изменить фото аккаунта
       </button>
       {!photo && (
@@ -66,132 +64,152 @@ function PersonalArea(): JSX.Element {
             accept="image/*"
             onChange={(e) => handleFileChange(e)}
           />
-          <button className='btn' type="button" onClick={(e) => handleServicePut(e)}>
+          <button className="btn" type="button" onClick={(e) => handleServicePut(e)}>
             Сохранить
           </button>
         </>
       )}
-      <div className='itemrow'>
-      <div className='itemName'>Название салона:</div>
-      <div className='iteminfo'>{service?.title}</div>
+      <div className="itemrow">
+        <div className="itemName">Название салона:</div>
+        <div className="iteminfo">{service?.title}</div>
       </div>
-      <div className='itemrow'>
-      <div className='itemName'>Адрес салона: </div>
-      <div className='iteminfo'>{service?.adress}</div>
+      <div className="itemrow">
+        <div className="itemName">Адрес салона: </div>
+        <div className="iteminfo">{service?.adress}</div>
       </div>
-      <div className='itemrow'>
-          
-      <div className='itemName'>Email:</div>
-      <div className='iteminfo'>{service?.email}</div>
+      <div className="itemrow">
+        <div className="itemName">Email:</div>
+        <div className="iteminfo">{service?.email}</div>
       </div>
-      <div className='itemrow'>
-         
-      <div className='itemName'>Номер телефона:</div>
-      <div className='iteminfo'>{service?.phone}</div>
+      <div className="itemrow">
+        <div className="itemName">Номер телефона:</div>
+        <div className="iteminfo">{service?.phone}</div>
       </div>
-      <div className='itemrow'>
-      <div className='itemName'>Ваш тариф:</div>
-      <div className='iteminfo'>{service?.tarif}</div>
+      <div className="itemrow">
+        <div className="itemName">Ваш тариф:</div>
+        <div className="iteminfo">{service?.tarif}</div>
       </div>
 
-           <button className='btn' type="submit" onClick={() => navigate(`/services/${service.id}`)}>
+      <button className="btn" type="submit" onClick={() => navigate(`/services/${service.id}`)}>
         Добавить услуги
       </button>
       <Calendarr />
-        <div style={{ color: 'white', fontSize: '13px' }}>
-          <button
-            style={{ width: '30vw' }}
-            type="submit"
-            onClick={() => {
-              setWidt(!widt);
-            }}
-          >
-            Мои Записи
-          </button>
-          {widt && (
-            <div style={{ color: 'white' }}>
-              <div>
-                Сортировка:
-                <select
-                  style={{
-                    height: '40px',
-                    width: '300px',
-                    backgroundColor: 'white',
-                    color: 'black',
-                    marginBottom: '20px',
-                    borderRadius: '7px',
-                  }}
-                  onChange={() => setSelectedOption(!selectedOption)}
-                >
-                  <option disabled value="Сортировать заявки">
-                    Сортировать заявки
-                  </option>
-                  <option value="Активные" style={{ fontSize: '13px' }}>
-                    Активные
-                  </option>
-                  <option value="Архивные" style={{ fontSize: '13px' }}>
-                    Архивные
-                  </option>
-                </select>
-              </div>
-              <div style={{ backgroundColor: 'white', color: 'black', fontSize: '2vh' }}>
-                {uslugaPrice &&
-                  uslovie.map((el) => (
-                    <div style={{ display: 'flex', flexDirection: 'row', width: '50vw' }}>
-                      <div
-                        style={{
-                          backgroundColor: 'white',
-                          // marginBottom: '20px',
-                          paddingBottom: '20px',
-                          color: 'black',
-                          display: 'flex',
-                          flexDirection: 'column',
-                        }}
-                      >
-                        <div>Марка авто: {el.Mark.title}</div>
-                        <div>Модель авто: {el.CarModel.title}</div>
-                        <div>Цена услуги: {el.cost} </div>
-                        <div>Usluga {el.Usluga.title}</div>
-                        <div style={{ display: 'flex', flexDirection: 'row' }}>
-                          Услуги:
-                          {el.OrderItems.map(
-                            (elem) =>
-                              elem.isClosed === selectedOption && (
-                                <div style={{ display: 'flex', flexDirection: 'row' }}>
-                                  <div>
-                                    <div>Дата записи: {elem.date}</div>
-                                    <div>Имя клиента: {elem.Order.User.name}</div>
-                                    <div>Email: {elem.Order.User.email}</div>
-                                    <div>
+      <div >
+        <button
+          style={{ width: '30vw' }}
+          type="submit"
+          onClick={() => {
+            setWidt(!widt);
+          }}
+        >
+          Записи сервиса
+        </button>
+        {widt && (
+          <div className='servicecontainer'>
+            <div>
+              <h1>Сортировка:</h1>
+              <select
+                style={{
+                  height: '40px',
+                  width: '300px',
+                  backgroundColor: 'white',
+                  color: 'black',
+                  marginBottom: '20px',
+                  borderRadius: '7px',
+                }}
+                onChange={() => setSelectedOption(!selectedOption)}
+              >
+                <option disabled value="Сортировать заявки">
+                  Сортировать заявки
+                </option>
+                <option value="Активные" style={{ fontSize: '13px' }}>
+                  Активные
+                </option>
+                <option value="Архивные" style={{ fontSize: '13px' }}>
+                  Архивные
+                </option>
+              </select>
+            </div>
+            <div >
+              {uslugaPrice &&
+                uslovie.map((el) => (
+                  <div className="ordercont3">
+                    
+                      <div className="itemrow">
+                        <div className="itemName">Марка авто: </div>
+                        <div className="iteminfo">{el.Mark.title}</div>
+                      </div>
+                      <div className="itemrow">
+                        <div className="itemName">Модель авто:</div>
+                        <div className="iteminfo">{el.CarModel.title}</div>
+                      </div>
+                      <div className="itemrow">
+                        <div className="itemName">Цена услуги:</div>
+                        <div className="iteminfo">{el.cost}</div>
+                      </div>
+                      <div className="itemrow">
+                        <div className="itemName">Номер телефона:</div>
+                        <div className="iteminfo">{service?.phone}</div>
+                      </div>
+                      <div className="itemrow">
+                        <div className="itemName">Услуга:</div>
+                        <div className="iteminfo">{el.Usluga.title}</div>
+                     
+</div>
+                      <div className="ordercont2">
+                        Услуги:
+                        {el.OrderItems.map(
+                          (elem) =>
+                            elem.isClosed === selectedOption && (
+                              // <div className="ordercont2">
+                                <div className="ordercont">
+                                  <div className="itemrow">
+                                    <div className="itemName">Дата записи:</div>
+                                    <div className="iteminfo">{elem.date}</div>
+                                  </div>
+                                  <div className="itemrow">
+                                    <div className="itemName">Имя клиента:</div>
+                                    <div className="iteminfo">{elem.Order.User.name}</div>
+                                  </div>
+                                  <div className="itemrow">
+                                    <div className="itemName">Email:</div>
+                                    <div className="iteminfo">{elem.Order.User.email}</div>
+                                  </div>
+                                  <div className="itemrow">
+                                    <div className="itemName">
                                       Статус заказа:{' '}
-                                      {elem.isClosed ? <div>Архивный</div> : <div>Активный</div>}
+                                      {elem.isClosed ? (
+                                        <div className="iteminfo">Архивный</div>
+                                      ) : (
+                                        <div className="iteminfo">Активный</div>
+                                      )}
                                     </div>
                                   </div>
-                                  <button
-                                    type="button"
-                                    style={{ width: '20vw', height: '10vh', fontSize: '15px' }}
-                                    onClick={() =>
-                                      OnHandleUpdateStatusOrder({
-                                        orderItem_id: elem.id,
-                                        uslugaPrice_id: el.id,
-                                      })
-                                    }
-                                  >
-                                    Изменить статус Заказа
-                                  </button>
-                                </div>
-                              ),
-                          )}
-                        </div>
+                                {/* </div> */}
+                                <button
+                                  className="btn"
+                                  type="button"
+                                  onClick={() =>
+                                    OnHandleUpdateStatusOrder({
+                                      orderItem_id: elem.id,
+                                      uslugaPrice_id: el.id,
+                                    })
+                                  }
+                                >
+                                  Изменить статус Заказа
+                                </button>
+                              </div>
+                            ),
+                        )}
                       </div>
-                    </div>
-                  ))}
-              </div>
+                    
+                  </div>
+                ))}
             </div>
-          )}
-        </div>
-        {/* <Calendarr /> */}
+          </div>
+        )}
       </div>
+      {/* <Calendarr /> */}
     </div>
   );
 }
