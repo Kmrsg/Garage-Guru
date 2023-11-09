@@ -39,51 +39,53 @@ export default function AddUslugaForm({ service }: { service: ServiceCard }): JS
 
   return (
     <div className="uslugas">
-      <form id="usluga" onSubmit={onHandleAdd}>
-        <select name="usluga" onChange={(e) => setUsluga(e.target.value)}>
-          <option value="1">Выберите услугу</option>
-          {uslugas.map((uslugaa) => (
-            <option key={uslugaa.id} value={uslugaa.title}>
-              {uslugaa.title}
-            </option>
-          ))}
-        </select>
-        <select
-          name="mark"
-          id="mark"
-          onChange={(e) => {
-            setMarka(e.target.value);
-          }}
-        >
-          <option value="">Выберите марку авто</option>
-          {marks.map((mark) => (
-            <option key={mark.id} value={mark.title}>
-              {mark.title}
-            </option>
-          ))}
-        </select>
-        <select name="model" onChange={(e) => setModel(e.target.value)}>
-          <option value="">Выберите модель авто</option>
-          {marka !== '' &&
-            marks.map(
-              (mark) =>
-                mark.title === marka &&
-                mark.CarModels.map((car) => (
-                  <option key={car.id} value={car.title}>
-                    {car.title}
-                  </option>
-                )),
-            )}
-        </select>
-        <input
-          className="costinput"
-          type="number"
-          name="cost"
-          value={cost}
-          onChange={(e) => setCost(e.target.value)}
-        />
-        {serviceAuth && <button type="submit">Добавить услугу</button>}
-      </form>
+      {serviceAuth?.id && (
+        <form id="usluga" onSubmit={onHandleAdd}>
+          <select name="usluga" onChange={(e) => setUsluga(e.target.value)}>
+            <option value="1">Выберите услугу</option>
+            {uslugas.map((uslugaa) => (
+              <option key={uslugaa.id} value={uslugaa.title}>
+                {uslugaa.title}
+              </option>
+            ))}
+          </select>
+          <select
+            name="mark"
+            id="mark"
+            onChange={(e) => {
+              setMarka(e.target.value);
+            }}
+          >
+            <option value="">Выберите марку авто</option>
+            {marks.map((mark) => (
+              <option key={mark.id} value={mark.title}>
+                {mark.title}
+              </option>
+            ))}
+          </select>
+          <select name="model" onChange={(e) => setModel(e.target.value)}>
+            <option value="">Выберите модель авто</option>
+            {marka !== '' &&
+              marks.map(
+                (mark) =>
+                  mark.title === marka &&
+                  mark.CarModels.map((car) => (
+                    <option key={car.id} value={car.title}>
+                      {car.title}
+                    </option>
+                  )),
+              )}
+          </select>
+          <input
+            className="costinput"
+            type="number"
+            name="cost"
+            value={cost}
+            onChange={(e) => setCost(e.target.value)}
+          />
+          <button type="submit">Добавить услугу</button>
+        </form>
+      )}
     </div>
   );
 }

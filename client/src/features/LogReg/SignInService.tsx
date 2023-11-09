@@ -1,3 +1,4 @@
+/* eslint-disable react/self-closing-comp */
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 // eslint-disable-next-line import/no-cycle

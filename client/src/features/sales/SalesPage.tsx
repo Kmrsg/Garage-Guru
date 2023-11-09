@@ -8,6 +8,7 @@ import type { RootState } from '../../redux/store';
 
 function SalesPage(): JSX.Element {
   const sales = useSelector((store: RootState) => store.sales.sales);
+  const admin = useSelector((store: RootState) => store.auth.user);
   // const error = useSelector((store: RootState) => store.sales.error);
   // const loading = useSelector((store: RootState) => store.sales.loading);
 
@@ -22,6 +23,7 @@ function SalesPage(): JSX.Element {
         <div className="sales__container">
           {sales.map((sale) =>
             sale.Service.adress?.split(',').includes(city) ? (
+
               <SaleItem key={sale.id} sale={sale} />
             ) : null,
           )}

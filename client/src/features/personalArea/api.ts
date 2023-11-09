@@ -3,8 +3,7 @@
 
 import type { Service } from '../LogReg/type';
 import type { ServiceCard } from '../service/types/type';
-import type { UslugaPriceAdd } from '../usluga/types/types';
-import type { OrderItemID, OrderItems, UpdateStatus, UslugaPriceOrder } from './type';
+import type { OrderItems, UpdateStatus, UslugaPriceOrder } from './type';
 
 export const fetchUpdatePhoto = async (
   obj: Service,
