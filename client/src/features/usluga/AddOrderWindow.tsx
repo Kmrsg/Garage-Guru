@@ -15,10 +15,10 @@ function AddOrderWindow({
 }): JSX.Element {
   const [dateTimeValue, setDateTimeValue] = useState('');
   const authUser = useSelector((store: RootState) => store.auth.user);
-  console.log(authUser);
+  // console.log(authUser);
 
   const dispatch = useAppDispatch();
-  console.log(console.log(authUser));
+  // console.log(console.log(authUser));
 
   const handleDateTimeChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setDateTimeValue(event.target.value);
@@ -27,7 +27,7 @@ function AddOrderWindow({
 
   const handlePaymentClick = (): void => {
     if (authUser) {
-      console.log(authUser.id);
+      // console.log(authUser.id);
 
       dispatch(
         addOrder({

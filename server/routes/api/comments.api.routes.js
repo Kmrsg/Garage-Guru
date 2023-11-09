@@ -5,7 +5,7 @@ router.post('/', async (req, res) => {
   try {
     if (req.session.userId) {
       const { user_id, service_id, text, rate } = req.body;
-      console.log(req.body);
+      // console.log(req.body);
       if ((user_id, service_id, text.trim())) {
         const comment = await Comment.create({ user_id, service_id, text });
         const rating = await Rate.create({
@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
           service_id,
           score: rate,
         });
-        console.log(rate);
+        // console.log(rate);
         const commentRes = await Comment.findOne({
           where: { id: comment.id },
           include: { model: User },
@@ -32,7 +32,7 @@ router.delete('/:commentId', async (req, res) => {
     const rate = await Rate.findOne({
       where: { user_id: comment.user_id, service_id: comment.service_id },
     });
-    console.log(comment);
+    // console.log(comment);
     const data = {
       comment_id: comment.id,
       service_id: comment.service_id,

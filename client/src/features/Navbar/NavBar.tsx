@@ -25,31 +25,28 @@ function NavBar(): JSX.Element {
   return (
     <>
       <div className="collapse navbar-collapse" id="navbarResponsive">
-      <img className='picnav' src={picnav} alt='pic' />
+        <img className="picnav" src={picnav} alt="pic" />
         <div className="nav-item">
-     
           <label className="form-label">
             Выберите город
-        
-              <select
-                onChange={(e) => dispatch(chooseCity(e.target.value))}
-                id="group"
-                name="groupGold"
-              >
-                <option className="gold" value="Санкт-петербург">
-                  Санкт-Петербург
-                </option>
-                <option className="gold" value="Москва">
-                  Москва
-                </option>
-                <option className="gold" value="Казань">
-                  Казань
-                </option>
-                <option className="gold" value="Екатеринбург">
-                  Екатеринбург
-                </option>
-              </select>
-           
+            <select
+              onChange={(e) => dispatch(chooseCity(e.target.value))}
+              id="group"
+              name="groupGold"
+            >
+              <option className="gold" value="Санкт-петербург">
+                Санкт-Петербург
+              </option>
+              <option className="gold" value="Москва">
+                Москва
+              </option>
+              <option className="gold" value="Казань">
+                Казань
+              </option>
+              <option className="gold" value="Екатеринбург">
+                Екатеринбург
+              </option>
+            </select>
           </label>
         </div>
         <li className="nav-item">
@@ -95,16 +92,37 @@ function NavBar(): JSX.Element {
         {service && (
           <NavLink className="navlink" style={{ color: 'orange' }} to="/personalArea">
             Личный кабинет
+            <img
+              style={{ backgroundColor: 'white', width: '30px' }}
+              src="https://cdn.icon-icons.com/icons2/1993/PNG/512/account_avatar_face_man_people_profile_user_icon_123197.png"
+              alt="p"
+            />
           </NavLink>
         )}
         {user?.isAdmin && (
           <NavLink className="navlink" style={{ color: 'orange' }} to="/personalArea/admin">
             Личный кабинет
+            <img
+              style={{ backgroundColor: 'white', width: '20px' }}
+              src="https://cdn.icon-icons.com/icons2/1993/PNG/512/account_avatar_face_man_people_profile_user_icon_123197.png"
+              alt="p"
+            />
           </NavLink>
         )}{' '}
         {user?.isAdmin === false && (
-          <NavLink style={{ color: 'orange' }} to="/personalArea/person">
+          <NavLink
+            style={{ color: 'orange', flexDirection: 'row', display: 'flex' }}
+            to="/personalArea/person"
+          >
             Личный кабинет
+            <img
+              style={{
+                backgroundColor: 'white',
+                width: '30px',
+              }}
+              src="https://cdn.icon-icons.com/icons2/1993/PNG/512/account_avatar_face_man_people_profile_user_icon_123197.png"
+              alt="p"
+            />
           </NavLink>
         )}{' '}
       </div>
