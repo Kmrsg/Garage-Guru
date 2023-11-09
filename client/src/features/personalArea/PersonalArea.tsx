@@ -33,10 +33,11 @@ function PersonalArea(): JSX.Element {
   }
 
   return (
-    <div>
-      <img style={{ width: '300px' }} src={service?.img} alt="photka" />
+    <div className='servicelk'>
+      <h1 className='head' >Личный кабинет автосервиса</h1>
+      <img style={{ width: '400px' }} src={service?.img} alt="photka" />
 
-      <button type="submit" onClick={() => setPhoto(!photo)}>
+      <button className='btn' type="submit" onClick={() => setPhoto(!photo)}>
         Изменить фото аккаунта
       </button>
       {!photo && (
@@ -49,17 +50,42 @@ function PersonalArea(): JSX.Element {
             accept="image/*"
             onChange={(e) => handleFileChange(e)}
           />
-          <button type="button" onClick={(e) => handleServicePut(e)}>
-            save
+          <button className='btn' type="button" onClick={(e) => handleServicePut(e)}>
+            Сохранить
           </button>
         </>
       )}
-      <div>Название салона: {service?.title}</div>
-      <div>Адрес салона: {service?.adress}</div>
-      <div>Email: {service?.email}</div>
-      <div>Номер телефона: {service?.phone}</div>
-      <div>Ваш тариф: {service?.tarif}</div>
-      <button type="submit" onClick={() => navigate(`/services/${service.id}`)}>
+      <div className='itemrow'>
+      <div className='itemName'>Название салона:</div>
+      <div className='iteminfo'>{service?.title}</div>
+      </div>
+      <div className='itemrow'>
+      <div className='itemName'>Адрес салона: </div>
+      <div className='iteminfo'>{service?.adress}</div>
+      </div>
+      <div className='itemrow'>
+          
+      <div className='itemName'>Email:</div>
+      <div className='iteminfo'>{service?.email}</div>
+      </div>
+      <div className='itemrow'>
+         
+      <div className='itemName'>Номер телефона:</div>
+      <div className='iteminfo'>{service?.phone}</div>
+      </div>
+      <div className='itemrow'>
+      <div className='itemName'>Ваш тариф:</div>
+      <div className='iteminfo'>{service?.tarif}</div>
+      </div>
+
+      
+    
+      
+      
+    
+    
+  
+      <button className='btn' type="submit" onClick={() => navigate(`/services/${service.id}`)}>
         Добавить услуги
       </button>
       <Calendarr />

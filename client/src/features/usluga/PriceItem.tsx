@@ -41,10 +41,22 @@ export default function PriceItem({ price }: { price: UslugaPrice }): JSX.Elemen
 
   return (
     <div className="price-item">
-      <h4 className="table">Вид услуги: {price.Usluga.title}|</h4>
-      <h4 className="table"> Марка: {price.Mark.title}|</h4>
-      <h4 className="table"> Модель: {price.CarModel.title}|</h4>
-      <h4 className="table">Цена: {price.cost} рублей</h4>
+      <h4 className="itemrow">
+        <p className='itemName'> Вид услуги:</p>
+        <p className='iteminfo'>{price.Usluga.title}</p>
+        </h4>
+      <h4 className="itemrow">
+      <p className='itemName'> Марка: </p>
+        <p className='iteminfo'>  {price.Mark.title}</p>
+      </h4>
+      <h4 className="itemrow">
+      <p className='itemName'>Модель: </p>
+        <p className='iteminfo'>{price.CarModel.title}</p>
+         </h4>
+      <h4 className="itemrow">
+      <p className='itemName'> Цена:</p>
+        <p className='iteminfo'> {price.cost} рублей</p>
+       </h4>
       {serviceAuth && (
         <>
           <button
@@ -81,8 +93,8 @@ export default function PriceItem({ price }: { price: UslugaPrice }): JSX.Elemen
       {rega === true && (
         <div className="zPlan">
           <div className="containerPay" style={{ color: 'black' }}>
-            <button onClick={() => navigate('/reg')} type="submit">
-              Пройти регистрацию
+            <button className='btn' onClick={() => navigate('/reg')} type="submit">
+              Нажмите чтобы зарегистрироваться
             </button>
           </div>
         </div>

@@ -16,6 +16,7 @@
   align-items: center;
   justify-content: center;
   position: fixed;
+  z-index:99999;
 
  
 }
@@ -27,6 +28,7 @@
 #bigName {
   font-size: 80px;
   color: yellow;
+  margin-bottom: 30px;
 
   
  
@@ -81,6 +83,8 @@
 
 .sliderPart {
   width: 100%;
+  
+  margin: 30px;
 
 }
 .slick-slider {
@@ -200,12 +204,54 @@ input value {
 
 .carpic {
   width: 150px;
+
 }
+.carpic:hover {
+  width: 150px;
+  opacity: 0.2;
+}
+
 
 .picnav  {
   width: 150px;
   margin-left: 5px;
 }
+.picnav:hover  {
+  opacity: 0.2;
+ 
+  width: 150px;
+  margin-left: 5px;
+}
 .serviceadres {
   margin: 20px;
+}
+#namecont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+.par {
+  width: 800px;
+  text-align: center;
+  text-shadow: 1px 1px 1px orangered;
+  /* display: flex;
+justify-content: center;
+  align-items: center; */
+}
+
+.about {
+  background-color: gold;
+  display: flex;
+  color: black;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 90px;
+  margin: 30px;
+}
+.abouttext{
+  color: black;
+  font-size: x-large;
+  font-family: 'Orbitron';
 }

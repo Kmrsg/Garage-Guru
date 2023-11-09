@@ -69,44 +69,48 @@ function SignIn(): JSX.Element {
             <option value="Service" disabled selected>
               Выберите{' '}
             </option>
-            <option value="Service">Service</option>
-            <option value="User">User</option>
+            <option value="Service">Регистрация сервиса</option>
+            <option value="User">Регистрация пользователя</option>
           </select>
           {status === false ? (
             <SignUpService />
           ) : (
             <div>
-              <h1>Регистрация</h1>
+              <h1>Регистрация пользователя</h1>
               <form
                 style={{ display: 'flex', flexDirection: 'column' }}
                 onSubmit={(e) => {
                   void onHandleSignIn(e);
                 }}
               >
-                <label htmlFor="a">
-                  Name
-                  <input
+                <label className='itemrow' htmlFor="a">
+                <p className='itemName'>Имя</p>
+                <p className='iteminfo'>    <input
                     placeholder="name"
                     value={name}
                     type="text"
                     onChange={(e) => setName(e.target.value)}
                     required
-                  />
+                  /> </p>
+                
+        
                 </label>
-                <label htmlFor="a">
-                  Email
-                  <input
+                <label className='itemrow' htmlFor="a">
+                <p className='itemName'>Email</p>
+                <p className='iteminfo'>   <input
                     value={email}
                     placeholder="email"
                     onChange={(e) => setEmail(e.target.value)}
                     type="text"
                     required
-                  />
+                  /> </p>
+                 
+               
                 </label>
 
-                <label htmlFor="a">
-                  Phone +7
-                  <input
+                <label className='itemrow' htmlFor="a">
+                <p className='itemName'>Телефон +7</p>
+                <p className='iteminfo'>  <input
                     placeholder="phone"
                     type="tel"
                     name="tel"
@@ -121,73 +125,83 @@ function SignIn(): JSX.Element {
                       setPhone(phoneWithDashes);
                     }}
                     required
-                  />
+                  /> </p>
+                  
+                
                 </label>
-                <label htmlFor="d">
-                  Password
-                  <input
+                <label className='itemrow' htmlFor="d">
+                <p className='itemName'>Пароль</p>
+                <p className='iteminfo'>
+                <input
                     value={password}
                     placeholder="password"
                     onChange={(e) => setPassword(e.target.value)}
                     name="password"
                     type="password"
                     required
-                  />
+                  /> </p>
+                  
+                
                 </label>
-                <button type="submit" onClick={() => setSubmitted(true)}>
+                <button className='btn' type="submit" onClick={() => setSubmitted(true)}>
                   Submit
                 </button>
-                <button type="submit">Забыли пароль?</button>
+                <button className='btn' type="submit">Забыли пароль?</button>
               </form>
-              <button
+              <button className='btn'
                 type="button"
                 onClick={() => {
                   setSign(!sign);
                 }}
               >
-                У меня есть аккаунт
+                У меня уже есть аккаунт
               </button>
             </div>
           )}
         </>
       ) : (
         <>
-          <h1>Вход (user)</h1>
+          <h1>Вход (пользователь)</h1>
           <div>
             <form
               style={{ display: 'flex', flexDirection: 'column' }}
               onSubmit={(e) => void onHandlePlayerAdd(e)}
             >
-              <label htmlFor="a">
-                Email
-                <input
-                  value={email}
-                  placeholder="email"
-                  onChange={(e) => setEmail(e.target.value)}
-                  name="email"
-                  type="text"
-                  required
-                />
-              </label>
+             
+              <label className='itemrow' htmlFor="a">
+                <p className='itemName'>Email</p>
+                <p className='iteminfo'>   <input
+                    value={email}
+                    placeholder="email"
+                    onChange={(e) => setEmail(e.target.value)}
+                    type="text"
+                    required
+                  /> </p>
+                 
+               
+                </label>
 
-              <label htmlFor="d">
-                Password
+                <label className='itemrow' htmlFor="d">
+                <p className='itemName'>Пароль</p>
+                <p className='iteminfo'>
                 <input
-                  value={password}
-                  placeholder="password"
-                  onChange={(e) => setPassword(e.target.value)}
-                  name="password"
-                  type="password"
-                  required
-                />
-              </label>
-              <button type="submit" onClick={() => setSubmitted(true)}>
-                save
+                    value={password}
+                    placeholder="password"
+                    onChange={(e) => setPassword(e.target.value)}
+                    name="password"
+                    type="password"
+                    required
+                  /> </p>
+                  
+                
+                </label>
+              <button className='btn' type="submit" onClick={() => setSubmitted(true)}>
+                Войти
               </button>
-              <button type="submit">Забыли пароль?</button>
+              <button className='btn' type="submit">Забыли пароль?</button>
               {submitted === true && errorUser && <h3>{errorUser}</h3>}
             </form>
-            <button
+            <button className='btn'
               type="button"
               onClick={() => {
                 setSign(false);

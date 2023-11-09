@@ -30,6 +30,7 @@ a{
 .footer .box-container .box h3{
     font-size: 2.2rem;
     padding:1rem 0;
+    color:gold;
 
   
 }
@@ -110,6 +111,9 @@ a.nav-link.active {
     width: 60px;
    
 }
+.totop:hover{
+    background-color: rgb(236, 236, 68);
+  }
 
  .footeritem{
     margin:0 1rem;

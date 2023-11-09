@@ -24,6 +24,7 @@
   .groupGold, .gold
 {
   color: #AD974F;
+  
 }
   
 li {
@@ -59,7 +60,7 @@ li {
     box-sizing: border-box;
     outline: none; border:none;
     text-decoration: none;
-    text-transform: capitalize;
+   
     transition: .2s linear;
 }
 
@@ -100,6 +101,20 @@ html{
     color: #ffc400;
   
 }
+.nav-hello{
+    
+    margin-left: 1rem;
+    margin-right: -4rem;
+    font-size:2.5rem;
+    
+    color: orange
+}
+.nav-hello:hover{
+   
+    padding-right: 2rem;
+    text-shadow: 1px 1px 1px orangered;
+}
+
 .btn{
     display: inline-block;
     margin-top: 1rem;
@@ -132,10 +147,15 @@ html{
 }
 
 .nav-item:hover{
-    color: orange;
+   
     padding-right: 2rem;
-    text-shadow: 1px 1px 1px orangered;
+    
 }
+/* .nav-item a{
+   
+    padding-right: 2rem;
+    
+} */
 .nav-item{
     text-decoration: none;
     padding-right: .5rem;
@@ -167,10 +187,27 @@ li{list-style: none;}
 }
 .navlink {
     color: yellow;
+    
+}
+.navlink2 {
+    color: yellow;
+    font-size: large;
+    font-weight: bold;
+    
+}
+.navlink2:hover {
+  
+    font-size: large;
+    font-weight: bold;
+    
 }
 .navlink:hover {
-    color: orange;
+    font-size: xx-large;
+    cursor: pointer;
    
     text-shadow: 1px 1px 1px orangered;
 }
 
+#b1 {
+    border: 1px solid orangered;
+}

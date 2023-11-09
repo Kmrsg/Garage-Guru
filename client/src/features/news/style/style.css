@@ -31,6 +31,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 60px;
 
   }
 
@@ -90,8 +91,21 @@ body {
 
   .post-page__text {
     padding: 50px;
+   
   }
 
   .post-page__img {
-    padding: 50px;
+   
+    border-radius: 20px;
+    width: 70%;
   }
+
+ .scroll {
+ 
+    height: 200px; /* высота нашего блока */
+    width: 400px; /* ширина нашего блока */
+    background: #000000; /* цвет фона, белый */
+    overflow-x: scroll; /* прокрутка по горизонтали */
+    overflow-y: scroll; /* прокрутка по вертикали */
+    
+ }

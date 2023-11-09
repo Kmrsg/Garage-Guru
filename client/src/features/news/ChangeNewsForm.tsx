@@ -29,10 +29,11 @@ function ChangeNewsForm({
   };
 
   return (
-    <div className="modal active">
+    <div className='darkened'>
+      <div className="modal active">
       <form className="modal-content active" onSubmit={onHandleChange}>
         <label className="form__label">
-          Фото
+          Фото статьи
           <input value={img} onChange={(e) => setImg(e.target.value)} type="text" />
         </label>
         <label className="form__label ">
@@ -54,6 +55,8 @@ function ChangeNewsForm({
         </button>
       </form>
     </div>
+    </div>
+    
   );
 }
 

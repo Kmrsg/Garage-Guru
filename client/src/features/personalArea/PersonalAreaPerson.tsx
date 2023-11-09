@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../redux/store';
+import pic from '../../images/10.png';
 
 function PersonalAreaPerson(): JSX.Element {
   const [widt, setWidt] = useState(false);
@@ -18,32 +19,50 @@ function PersonalAreaPerson(): JSX.Element {
       <div>Name: {user?.name}</div>
       <div>Email: {user?.email}</div>
       <div>Phone-number: {user?.phone}</div>
-      <button
+      <button className='btn'
         type="submit"
         onClick={() => {
           setWidt(!widt);
         }}
       >
-        Мои Записи
+        Мои записи
       </button>
-      <div>
+      <div className='itemName'>
         Сортировка:{' '}
         <select>
           <option>Активные</option>
           <option>Неактивные</option>
         </select>
+        
+          <img className="carpic" src={pic} alt="pic" />
       </div>
       {widt && (
-        <div style={{ color: 'white' }}>
+        <div className='ordercont'>
           {order &&
             orders?.map((el) => (
-              <div style={{ backgroundColor: 'white', marginBottom: '20px', color: 'black' }}>
-                <div>Дата записи: {el.date.slice(0, 10)}</div>
-                <div>Услуга: {el.UslugaPrice.Usluga.title}</div>
-                <div>
-                  Марка авто: {el.UslugaPrice.Mark.title}, модель: {el.UslugaPrice.CarModel.title}
+              <div>
+                 <div className='itemrow'>
+                <div className='itemName'>Дата записи:</div>
+                <div className='iteminfo'> {el.date.slice(0, 10)}</div>
                 </div>
-                <div>Цена: {el.UslugaPrice.cost}р.</div>
+                <div className='itemrow'>
+                <div className='itemName'>Услуга:</div>
+                <div className='iteminfo'>{el.UslugaPrice.Usluga.title}</div>
+                </div>
+                
+                <div className='itemrow'>
+                <div className='itemName'>Марка авто:</div>
+                <div className='iteminfo'>{el.UslugaPrice.Mark.title}</div>
+                </div>
+                <div className='itemrow'>
+                <div className='itemName'>Модель:</div>
+                <div className='iteminfo'>{el.UslugaPrice.CarModel.title}</div>
+                   
+                </div>
+                <div className='itemrow'>
+                <div className='itemName'>Цена:</div>
+                <div className='iteminfo'>{el.UslugaPrice.cost}р</div>
+                </div>
               </div>
             ))}
         </div>

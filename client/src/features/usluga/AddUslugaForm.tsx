@@ -68,7 +68,7 @@ export default function AddUslugaForm({ service }: { service: ServiceCard }): JS
                 )),
             )}
         </select>
-        <input className='costinput' type="number" name="cost" value={cost} onChange={(e) => setCost(e.target.value)} />
+        <input className='costinput' placeholder='Установите цену' type="number" name="cost" value={cost} onChange={(e) => setCost(e.target.value)} />
         {serviceAuth && <button type="submit">Добавить услугу</button>}
       </form>
     </div>

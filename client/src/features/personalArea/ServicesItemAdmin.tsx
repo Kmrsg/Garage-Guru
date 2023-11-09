@@ -17,30 +17,33 @@ function ServicesItemAdmin({ servic }: { servic: Service }): JSX.Element {
   };
 
   return (
-    <div
-      style={{
-        width: '30vw',
-        height: '34vh',
-        backgroundColor: 'white',
-        color: 'black',
-        marginBottom: '20px',
-        fontSize: '13px',
-      }}
+    <div className='adminItem'
+      
     >
-      <div>Номер телефона: {servic?.phone}</div>
-      <div>Email: {servic?.email}</div>
-      <div>Салон: {servic?.title}</div>
-      <div>Купленный тариф: {servic?.tarif}$</div>
-      <div>Статус подтверждения: {`${servic?.isChecked}`}</div>
-      <button
+      <div className='itemrow'>
+        <p className='itemName'>Номер телефона:</p> 
+        <p className='iteminfo'>{servic?.phone}</p></div>
+      <div className='itemrow'>
+      <p className='itemName'>Email:</p> 
+      <p className='iteminfo'>{servic?.email}</p> </div>
+      <div className='itemrow'>
+      <p className='itemName'>Салон:</p>
+       <p className='iteminfo'>{servic?.title}</p>  </div>
+      <div className='itemrow'>
+         <p className='itemName'>Купленный тариф: </p>
+         <p className='iteminfo'>{servic?.tarif}$</p> </div>
+      <div className='itemrow'>
+      <p className='itemName'>Статус подтверждения:</p> 
+      <p className='iteminfo'>{`${servic?.isChecked}`}</p> </div>
+      <button className='btn'
         type="submit"
-        style={{ backgroundColor: 'black', color: 'white' }}
+        
         onClick={() => updateStatusService()}
       >
         Изменить статус салона
       </button>
-      <button
-        style={{ backgroundColor: 'red', color: 'white' }}
+      <button className='btn'
+       
         onClick={() => onHandeldeleteService()}
         type="submit"
       >

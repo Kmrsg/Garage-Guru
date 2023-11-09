@@ -44,12 +44,27 @@ function AddOrderWindow({
   return (
     <div id="zPlan">
       <div className="containerPay" style={{ color: 'black', fontSize: '20px' }}>
-        <div>Вид Услуги: {price.Usluga.title} </div>
-        <div>Марка Автомобиля: {price.Mark.title} </div>
-        <div>Модель Автомобиля: {price.CarModel.title} </div>
-        <div>Цена: {price.cost} руб.</div>
-        <div>Услуга: </div>
-        <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <div className="itemrow">
+        <p className='itemName'> Вид услуги:</p>
+        <p className='iteminfo'>{price.Usluga.title}</p>
+         </div>
+        <div className="itemrow">
+        <p className='itemName'> Марка Автомобиля:</p>
+        <p className='iteminfo'> {price.Mark.title}</p>
+       </div>
+        <div className="itemrow">
+        <p className='itemName'> Модель Автомобиля:</p>
+        <p className='iteminfo'>{price.CarModel.title}</p>
+          </div>
+        <div className="itemrow">
+        <p className='itemName'>    Цена:</p>
+        <p className='iteminfo'>{price.cost} руб</p>
+      </div>
+        <div className="itemrow">
+        <p className='itemName'>  Услуга:</p>
+        <p className='iteminfo'>{price.Usluga.title}</p>
+         </div>
+        <div className="itemrow" style={{ display: 'flex', flexDirection: 'row' }}>
           Выберите дату:
           <input
             style={{ width: '100%', fontSize: '1rem' }}
@@ -60,7 +75,7 @@ function AddOrderWindow({
           />
         </div>
         <h5>Сервис ответит или перезвонит вам в течение дня</h5>{' '}
-        <button type="submit" onClick={handlePaymentClick}>
+        <button className='btn' type="submit" onClick={handlePaymentClick}>
           Отправить запрос
         </button>
       </div>

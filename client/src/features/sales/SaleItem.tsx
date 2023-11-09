@@ -21,7 +21,7 @@ export default function SaleItem({ sale }: { sale: Sale }): JSX.Element {
 
   return (
     <div className="sale-card">
-      <img src={sale.img} alt="saleImg" />
+      <img className='saleimg' src={sale.img} alt="saleImg" />
       <h3>{sale.text}</h3>
       <button className='btn' onClick={onHandleDelete} type="button" >
         удалить акцию
