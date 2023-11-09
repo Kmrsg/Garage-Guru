@@ -9,6 +9,8 @@ function Footer(): JSX.Element {
     <div className="footer" id="footer">
       <div className="box-container">
         <div className="box">
+
+        <h3>Навигация</h3>
           <li className="footeritem">
             <NavLink className="footerlink" to="/main">
               На главную
@@ -33,40 +35,37 @@ function Footer(): JSX.Element {
           </li>
         </div>
         <div className="box2">
-          <h3>contact info</h3>
+          <h3>Контакты</h3>
           <a href="#">
             {' '}
-            <i className="fas fa-phone">+7777777</i>{' '}
+            <i className="fas fa-phone" /> +7777777{' '}
           </a>
           <a href="#">
             {' '}
-            <i className="fas fa-envelope"></i> lapocki@gmail.com{' '}
+            <i className="fas fa-envelope" /> lapocki@gmail.com{' '}
           </a>
-          <a href="#">
+          <a href="https://elbrusboot.camp/">
             {' '}
-            <i className="fas fa-map-marker-alt"></i> ELBRUS{' '}
+            <i className="fas fa-map-marker-alt" /> ELBRUS{' '}
           </a>
 
           <a href="#">
             {' '}
-            <i className="fab fa-facebook-f"></i> GITHUB{' '}
+            <i className="fab fa-facebook-f"/> GITHUB{' '}
           </a>
           <a href="#">
             {' '}
-            <i className="fab fa-linkedin"></i> linkedin{' '}
+            <i className="fab fa-linkedin"/> linkedin{' '}
           </a>
         </div>
 
         <div className="credit shadow">
           {' '}
           created by LAPOCHKI
-          <button
-            type="button"
-            className="totop"
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          >
+          <button type="button" className="totop" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
             <BiSolidToTop />
           </button>
+         
           <img className="carpic" src={pic} alt="pic" />
         </div>
       </div>

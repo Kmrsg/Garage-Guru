@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Service } = require('../../db/models');
 
-router.put('/person/:serviceId', async (req, res) => {
+router.put("/person/:serviceId", async (req, res) => {
   try {
     const { serviceId } = req.params;
     const { img } = req.body;

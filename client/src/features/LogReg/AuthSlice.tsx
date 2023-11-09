@@ -9,10 +9,10 @@ import {
   fetchSignInService,
   fetchSignUpService,
 } from './api/api';
-import type { AuthState, Service, User } from './type';
+import type { Auth2, Service, User } from './type';
 import { fetchUpdatePhoto } from '../personalArea/api';
 
-const initialState: AuthState = {
+const initialState: Auth2 = {
   user: undefined,
   service: undefined,
   error: null,
@@ -36,7 +36,6 @@ export const registrService = createAsyncThunk('auth/signup/service', (service: 
 export const updatePhoto = createAsyncThunk('update/photo', (obj: Service) =>
   fetchUpdatePhoto(obj),
 );
-
 export const logOut = createAsyncThunk('auth/logout', () => fetchLogOut());
 
 const authSlice = createSlice({
@@ -52,29 +51,24 @@ const authSlice = createSlice({
       .addCase(checkUser.rejected, (state, action) => {
         state.error = action.error.message ? action.error.message : null;
       })
-
       .addCase(checkService.fulfilled, (state, action) => {
-        console.log(action.payload.service);
         state.service = action.payload.service;
       })
       .addCase(checkService.rejected, (state, action) => {
         state.error = action.error.message ? action.error.message : null;
       })
-
       .addCase(signUp.fulfilled, (state, action) => {
         state.user = action.payload;
       })
       .addCase(signUp.rejected, (state, action) => {
         state.error = action.error.message ? action.error.message : null;
       })
-
       .addCase(registrService.fulfilled, (state, action) => {
         state.service = action.payload;
       })
       .addCase(registrService.rejected, (state, action) => {
         state.error = action.error.message ? action.error.message : null;
       })
-
       .addCase(signIn.fulfilled, (state, action) => {
         if (action.payload.message === 'succes') {
           state.user = action.payload.user;
@@ -85,11 +79,8 @@ const authSlice = createSlice({
       .addCase(signIn.rejected, (state, action) => {
         state.error = action.error.message ? action.error.message : null;
       })
-
       .addCase(signInService.fulfilled, (state, action) => {
         if (action.payload.message === 'succes') {
-          console.log(action.payload.service);
-
           state.service = action.payload.service;
         } else {
           console.log(action.payload.message);
@@ -98,22 +89,11 @@ const authSlice = createSlice({
       .addCase(signInService.rejected, (state, action) => {
         state.error = action.error.message ? action.error.message : null;
       })
-
-      // .addCase(logOut.fulfilled, (state) => {
-      //   state.service = undefined;
-      //   state.user = undefined;
-      // })
-      // .addCase(logOut.rejected, (state, action) => {
-      //   state.error = action.error.message ? action.error.message : null;
-      // });
       .addCase(logOut.fulfilled, (state) => {
         state.service = undefined;
         state.user = undefined;
         state.error = '';
       })
-      // .addCase(logOut.rejected, (state, action) => {
-      //   state.error = action.error.message;
-      // });
       .addCase(updatePhoto.fulfilled, (state, action) => {
         if (state.service && state.service?.id === action.payload.service.id) {
           state.service.img = action.payload.service.img;

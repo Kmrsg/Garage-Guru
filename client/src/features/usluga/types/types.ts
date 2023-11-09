@@ -1,3 +1,6 @@
+import { OrderItem } from 'sequelize';
+import type { User } from '../../personalArea/type';
+
 export type UslugaPrice = {
   id: number;
   usluga_id: number;
@@ -8,6 +11,7 @@ export type UslugaPrice = {
   CarModel: CarModel;
   Mark: Mark;
   Usluga: Usluga;
+  OrderItems: OrderItemAdd[];
 };
 
 export type Usluga = {
@@ -41,14 +45,16 @@ export type UslugaPriceState = {
 export type OrderAdd = {
   id: number;
   user_id: number;
-  OrderItems: OrderItemAdd[];
+  // OrderItems: OrderItemAdd[];
+  user: User;
 };
 export type OrderItemAdd = {
   id: number;
   order_id: number;
   uslugaPrice_id: number;
   date: string;
-  UslugaPrice: UslugaPrice;
+  isClosed: boolean;
+  Order: OrderAdd;
 };
 export type UslugasAdd = {
   carModel: CarModel;

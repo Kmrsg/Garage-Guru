@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { CommentData, Sale, SaleId, ServicesState } from './types/type';
 import * as api from './api/api';
-import { fetchDeleteOne, fetchUpdateStatus } from '../personalArea/api';
+import { fetchDeleteOne, fetchUpdateItemStatus, fetchUpdateStatus } from '../personalArea/api';
 import type { Service } from '../LogReg/type';
+import type { OrderItemID, UpdateStatus } from '../personalArea/type';
 
 const initialState: ServicesState = {
   services: [],
@@ -23,7 +24,7 @@ export const updateSale = createAsyncThunk('services/sales/upd', (sale: Sale) =>
   api.fetchUpdSale(sale),
 );
 
-export const upStatusService = createAsyncThunk('update/status', (id: number) =>
+export const upStatusService = createAsyncThunk('update/status/service', (id: number) =>
   fetchUpdateStatus(id),
 );
 export const deleteOneService = createAsyncThunk('service/delete', (id: number) =>
@@ -34,6 +35,9 @@ export const addComments = createAsyncThunk('comments/add', (comment: CommentDat
 );
 export const deleteComment = createAsyncThunk('comments/delete', (id: number) =>
   api.fetchDeleteComments(id),
+);
+export const updateStatusOrderItem = createAsyncThunk('update/status', (obj: UpdateStatus) =>
+  fetchUpdateItemStatus(obj),
 );
 
 const servicesSlice = createSlice({
@@ -155,6 +159,28 @@ const servicesSlice = createSlice({
       })
       .addCase(deleteComment.pending, (state) => {
         state.loading = true;
+      })
+
+      .addCase(updateStatusOrderItem.fulfilled, (state, action) => {
+        console.log(action.payload);
+
+        state.services = state.services.map((service) =>
+          service.UslugaPrices.filter(
+            (uslugaPrice) => uslugaPrice.id === action.payload.uslugaPrice_id,
+          ).length > 0
+            ? {
+                ...service,
+                UslugaPrices: service.UslugaPrices.map((usluga) => ({
+                  ...usluga,
+                  OrderItems: usluga.OrderItems.map((order) =>
+                    order.id === action.payload.orderItem.id
+                      ? { ...order, isClosed: action.payload.orderItem.isClosed }
+                      : order,
+                  ),
+                })),
+              }
+            : service,
+        );
       });
   },
 });

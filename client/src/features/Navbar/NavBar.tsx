@@ -73,15 +73,15 @@ function NavBar(): JSX.Element {
         {service || user ? (
           <>
             <NavLink
-              className="navlink"
-              style={{ color: 'orange' }}
+              className="nav-item"
+              
               onClick={onHandleLogout}
               to="/"
             >
-              logout
+              Выйти
             </NavLink>
-            {user && <div>Hello, {user.name}</div>}
-            {service && <div>{service.title}</div>}
+            {user && <div className="nav-hello">Привет, {user.name}</div>}
+            {service && <div className="nav-hello"> {service.title}</div>}
           </>
         ) : (
           <li className="nav-item">
@@ -91,18 +91,36 @@ function NavBar(): JSX.Element {
           </li>
         )}
         {service && (
-          <NavLink className="navlink" style={{ color: 'orange' }} to="/personalArea">
+          <NavLink className="nav-item"  to="/personalArea">
             Личный кабинет
+            <img
+              style={{ backgroundColor: 'white', width: '30px' }}
+              src="https://cdn.icon-icons.com/icons2/1993/PNG/512/account_avatar_face_man_people_profile_user_icon_123197.png"
+              alt="p"
+            />
           </NavLink>
         )}
         {user?.isAdmin && (
-          <NavLink className="navlink" style={{ color: 'orange' }} to="/personalArea/admin">
+          <NavLink className="nav-item" to="/personalArea/admin">
             Личный кабинет
+            <img
+              style={{ backgroundColor: 'white', width: '20px' }}
+              src="https://cdn.icon-icons.com/icons2/1993/PNG/512/account_avatar_face_man_people_profile_user_icon_123197.png"
+              alt="p"
+            />
           </NavLink>
         )}{' '}
         {user?.isAdmin === false && (
-          <NavLink style={{ color: 'orange' }} to="/personalArea/person">
+          <NavLink className="nav-item" to="/personalArea/person">
             Личный кабинет
+            <img
+              style={{
+                backgroundColor: 'white',
+                width: '30px',
+              }}
+              src="https://cdn.icon-icons.com/icons2/1993/PNG/512/account_avatar_face_man_people_profile_user_icon_123197.png"
+              alt="p"
+            />
           </NavLink>
         )}{' '}
       </div>

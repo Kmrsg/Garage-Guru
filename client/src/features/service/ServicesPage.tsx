@@ -7,7 +7,7 @@ import pic from '../../images/6.png';
 
 export default function ServicesPage(): JSX.Element {
   const city = useSelector((store: RootState) => store.sales.city);
-  console.log(city);
+  // console.log(city);
 
   const uslugas = useSelector((store: RootState) => store.uslugas.uslugas);
   const marks = useSelector((store: RootState) => store.uslugas.marks);

@@ -25,6 +25,26 @@ function AddNewsForm(): JSX.Element {
           Текст статьи
           {/* это старый рабочий вариант с кривым инпутом */}
           {/* <input
+        <label className='itemrow'>
+        <p className='itemName'>  Фото статьи</p>
+        <p className='iteminfo'>
+        <input value={img} onChange={(e) => setImg(e.target.value)} type="text" />
+        </p>
+         
+         
+        </label>
+        <label className='itemrow'>
+        <p className='itemName'>Текст статьи </p>
+        <p className='iteminfo'>
+        <textarea minlength="20"
+            className="biginput"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            type="text" />
+        </p>
+           
+        {/* это старый рабочий вариант с кривым инпутом */}
+           {/* <input
             className="biginput"
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -38,7 +58,7 @@ function AddNewsForm(): JSX.Element {
           />
         </label>
 
-        <button className="addbtn" type="submit">
+        <button className="btn" type="submit">
           Добавить статью
         </button>
       </form>

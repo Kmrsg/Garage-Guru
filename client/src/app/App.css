@@ -62,3 +62,7 @@ body{
   #error-video {
 width: 100%;
   }
+input :placeholder {
+    color: black;
+    font-weight: bolder;
+  }

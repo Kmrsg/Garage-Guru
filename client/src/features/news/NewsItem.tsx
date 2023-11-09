@@ -32,7 +32,7 @@ function PostItem({ post }: { post: Post }): JSX.Element {
           </button>
         </>
       )}
-      <button type="button">
+      <button className='btn' type="button">
         <Link to={`/news/${post.id}`}>Посмотреть статью</Link>
       </button>
     </div>

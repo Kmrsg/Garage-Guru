@@ -11,6 +11,8 @@ const uslugasPricesApiRouter = require('./api/uslugasPrices.api.routes');
 const authPersonRoute = require('./api/person.spi');
 const commentsApiRouter = require('./api/comments.api.routes');
 const authOrder = require('./api/order.api');
+const authUslugaPrice = require('./api/uslugaPrice.api.routes');
+const orderItemRouter = require('./api/orderItem.api.route');
 
 // router.use('/api/getUser', getUserRouter);
 // router.use('/api/getService', getServiceRouter);
@@ -24,4 +26,7 @@ router.use('/api/uslugasPrice', uslugasPricesApiRouter);
 router.use('/api/service', authPersonRoute);
 router.use('/api/comments', commentsApiRouter);
 router.use('/api/order', authOrder);
+router.use('/api/usslugaPrice', authUslugaPrice);
+router.use('/api/rderItem', orderItemRouter);
+
 module.exports = router;

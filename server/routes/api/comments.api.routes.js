@@ -5,7 +5,7 @@ router.post('/', async (req, res) => {
   try {
     if (req.session.userId) {
       const { user_id, service_id, text, rate } = req.body;
-      console.log(req.body);
+      // console.log(req.body);
       if ((user_id, service_id, text.trim())) {
         const comment = await Comment.create({ user_id, service_id, text });
         const rating = await Rate.create({
@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
           service_id,
           score: rate,
         });
-        console.log(rate);
+        // console.log(rate);
         const commentRes = await Comment.findOne({
           where: { id: comment.id },
           include: { model: User },
