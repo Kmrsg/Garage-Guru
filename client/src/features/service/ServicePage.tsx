@@ -14,7 +14,7 @@ export default function ServicePage(): JSX.Element {
   const { serviceId } = useParams();
   const [flag, setFlag] = useState('usluga');
   const service = useSelector((store: RootState) =>
-    store.servicesSlice.services.find((servicee) => servicee.id === +serviceId),
+    store.servicesSlice.services.find((servicee) => serviceId && servicee.id === +serviceId),
   );
 
   return (

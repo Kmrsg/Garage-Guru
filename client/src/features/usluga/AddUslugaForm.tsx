@@ -32,6 +32,7 @@ export default function AddUslugaForm({ service }: { service: ServiceCard }): JS
         carModel_id: model_id!,
         usluga_id: usluga_id!,
         cost: +cost,
+        id: 100,
       }),
     );
   };

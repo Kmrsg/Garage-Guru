@@ -1,4 +1,11 @@
-import type { Mark, OrderAdd, Usluga, UslugaPrice, UslugaPriceAdd } from './types/types';
+import type {
+  Mark,
+  OrderAdd,
+  Usluga,
+  UslugaPrice,
+  UslugaPriceAdd,
+  UslugasAdd,
+} from './types/types';
 
 export async function fetchOrdersLoad(): Promise<OrderAdd[]> {
   const res = await fetch('/api/order');

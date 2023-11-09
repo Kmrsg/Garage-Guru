@@ -18,7 +18,7 @@ export const fetchUpdatePhoto = async (
 };
 
 export const fetchUpdateStatus = async (
-  id: Service,
+  id: number,
 ): Promise<{ message: string; service: Service }> => {
   const res = await fetch(`/api/service/person/status/${id}`, {
     method: 'put',
@@ -26,7 +26,7 @@ export const fetchUpdateStatus = async (
   const data = await res.json();
   return data;
 };
-export const fetchDeleteOne = async (id: Service): Promise<{ message: string; id: number }> => {
+export const fetchDeleteOne = async (id: number): Promise<{ message: string; id: number }> => {
   const res = await fetch(`/api/service/person/delete/${id}`, {
     method: 'delete',
   });

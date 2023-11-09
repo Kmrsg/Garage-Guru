@@ -1,6 +1,6 @@
 /* eslint-disable no-return-assign */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import type { UslugaPrice, UslugaPriceState } from './types/types';
+import type { UslugaPrice, UslugaPriceAdd, UslugaPriceState, UslugasAdd } from './types/types';
 import * as api from './api';
 
 const initialState: UslugaPriceState = {
@@ -9,7 +9,7 @@ const initialState: UslugaPriceState = {
   loading: true,
 };
 
-export const addUsluga = createAsyncThunk('usluga/add', (uslugaPrice: UslugaPrice) =>
+export const addUsluga = createAsyncThunk('usluga/add', (uslugaPrice: UslugaPriceAdd) =>
   api.fetchAddUslugas(uslugaPrice),
 );
 export const loadPrices = createAsyncThunk('load/uslugaPrice', () => api.fetchUslugasPrice());

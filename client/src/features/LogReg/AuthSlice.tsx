@@ -115,7 +115,7 @@ const authSlice = createSlice({
       //   state.error = action.error.message;
       // });
       .addCase(updatePhoto.fulfilled, (state, action) => {
-        if (state.service?.id === action.payload.service.id) {
+        if (state.service && state.service?.id === action.payload.service.id) {
           state.service.img = action.payload.service.img;
         } else {
           console.log(console.error);

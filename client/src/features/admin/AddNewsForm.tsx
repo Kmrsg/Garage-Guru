@@ -35,7 +35,6 @@ function AddNewsForm(): JSX.Element {
             className="biginput"
             value={text}
             onChange={(e) => setText(e.target.value)}
-            type="text"
           />
         </label>
 

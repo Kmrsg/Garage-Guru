@@ -27,7 +27,7 @@ export type Mark = {
 
 export type UslugasState = {
   uslugas: Usluga[];
-  marks: Mark[] | [];
+  marks: Mark[];
   error: string | null;
   orders: OrderAdd[];
   loading: boolean;

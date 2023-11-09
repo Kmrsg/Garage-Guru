@@ -23,10 +23,10 @@ export const updateSale = createAsyncThunk('services/sales/upd', (sale: Sale) =>
   api.fetchUpdSale(sale),
 );
 
-export const upStatusService = createAsyncThunk('update/status', (id: Service) =>
+export const upStatusService = createAsyncThunk('update/status', (id: number) =>
   fetchUpdateStatus(id),
 );
-export const deleteOneService = createAsyncThunk('service/delete', (id: Service) =>
+export const deleteOneService = createAsyncThunk('service/delete', (id: number) =>
   fetchDeleteOne(id),
 );
 export const addComments = createAsyncThunk('comments/add', (comment: CommentData) =>
@@ -94,7 +94,7 @@ const servicesSlice = createSlice({
       .addCase(upStatusService.fulfilled, (state, action) => {
         if (action.payload.message === 'success') {
           state.services = state.services.map((el) =>
-            el.id === action.payload.service.id ? (el = action.payload.service) : el,
+            el.id === action.payload.service.id ? { ...el, service: action.payload.service } : el,
           );
         }
       })
@@ -119,7 +119,7 @@ const servicesSlice = createSlice({
           );
           state.services.forEach((service) =>
             service.id === action.payload.comment.service_id
-              ? (service.Rates = [...service.Rates, action.payload.rate])
+              ? { ...service, Rates: [...service.Rates, action.payload.rate] }
               : service,
           );
         }
