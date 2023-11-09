@@ -8,7 +8,7 @@ import './style/style.css';
 
 export default function UslugaContainter({ service }: { service: ServiceCard }): JSX.Element {
   const prices = useSelector((store: RootState) => store.prices.uslugasPrices).filter(
-    (price) => price.service_id === service.id,
+    (price) => price.service_id === service?.id,
   );
 
   return (

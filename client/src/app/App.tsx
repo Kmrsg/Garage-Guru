@@ -45,7 +45,6 @@ function App(): JSX.Element {
     dispatch(loadPrices());
     dispatch(loadSales());
     dispatch(loadOrder());
-    dispatch(loadUslugasOrder());
     dispatch(loadOrderItems());
   }, []);
 

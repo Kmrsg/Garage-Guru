@@ -19,6 +19,8 @@ export default function SaleItem({ sale }: { sale: Sale }): JSX.Element {
     setFlag((prev) => !prev);
   };
   const onHandleDelete = (): void => {
+    console.log(sale);
+
     dispatch(deleteSale(sale.id));
   };
   const navigate = useNavigate();

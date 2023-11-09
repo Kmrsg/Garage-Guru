@@ -9,6 +9,7 @@ import type { RootState } from '../../redux/store';
 function SalesPage(): JSX.Element {
   const sales = useSelector((store: RootState) => store.sales.sales);
   const admin = useSelector((store: RootState) => store.auth.user);
+  const services = useSelector((store: RootState) => store.servicesSlice.services);
   // const error = useSelector((store: RootState) => store.sales.error);
   // const loading = useSelector((store: RootState) => store.sales.loading);
 
@@ -21,11 +22,10 @@ function SalesPage(): JSX.Element {
       {/* <img src={pic} alt='img'/> */}
       <div className="sales">
         <div className="sales__container">
-          {sales.map((sale) =>
-            sale.Service.adress?.split(',').includes(city) ? (
-
-              <SaleItem key={sale.id} sale={sale} />
-            ) : null,
+          {services.map((service) =>
+            service.adress.split(',').includes(city)
+              ? service.Sales.map((sale) => <SaleItem key={sale.id} sale={sale} />)
+              : null,
           )}
         </div>
       </div>
