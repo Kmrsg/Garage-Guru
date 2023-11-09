@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useRef } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -24,24 +25,11 @@ export default function SliderBlock(): JSX.Element {
     slidesToScroll: 1,
   };
 
-  const nextSlide = (): void => {
-    sliderRef.current ? sliderRef.current.slickNext() : sliderRef;
-  };
-
-  const previousSlide = (): void => {
-    sliderRef.current ? sliderRef.current.slickPrev() : sliderRef;
-  };
-
   return (
-    <div className='bigslider'>
+    <div className="bigslider">
       <Slider {...settings} ref={sliderRef}>
         {posts?.map((post) => <SliderItem key={post.id} post={post} />)}
-
-  
       </Slider>
-
-      {/* <button className='btn' onClick={previousSlide}>Previous</button>
-      <button className='btn' onClick={nextSlide}>Next</button> */}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const getUserRouter = require('./api/getUser');
-const getServiceRouter = require('./api/getService');
+// const getUserRouter = require('./api/getUser');
+// const getServiceRouter = require('./api/getService');
 const authApiRouter = require('./api/auth.api');
 const getNewsRouter = require('./api/posts.api');
 const servicesApiRouter = require('./api/services.api.routes');
@@ -14,8 +14,8 @@ const authOrder = require('./api/order.api');
 const authUslugaPrice = require('./api/uslugaPrice.api.routes');
 const orderItemRouter = require('./api/orderItem.api.route');
 
-router.use('/api/getUser', getUserRouter);
-router.use('/api/getService', getServiceRouter);
+// router.use('/api/getUser', getUserRouter);
+// router.use('/api/getService', getServiceRouter);
 router.use('/api/news', getNewsRouter);
 router.use('/api/services', servicesApiRouter);
 router.use('/api/sales', salesApiRouter);

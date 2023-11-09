@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react';
 import video from './style/vid_1.mp4';
 import './style/main.css';
 import SliderBlock from '../news/SliderBlock';
-import { BiSolidToTop } from 'react-icons/bi';
-import Footer from '../footer/Footer';
-import { NavLink } from 'react-router-dom';
 
 function MainPage(): JSX.Element {
   const [classStopScroll, setClassStopScrolling] = useState<'' | 'stop-scrolling'>(''); // Initial top position

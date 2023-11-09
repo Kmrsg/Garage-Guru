@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import React from 'react';
 import type { Service } from '../LogReg/type';
 import { useAppDispatch } from '../../redux/store';
 import { deleteOneService, upStatusService } from '../service/servicesSlice';
+import { ServiceCard } from '../service/types/type';
 
-function ServicesItemAdmin({ servic }: { servic: Service }): JSX.Element {
+function ServicesItemAdmin({ servic }: { servic: ServiceCard }): JSX.Element {
   const dispatch = useAppDispatch();
 
   const updateStatusService = (): void => {

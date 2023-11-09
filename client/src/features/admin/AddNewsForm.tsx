@@ -17,6 +17,14 @@ function AddNewsForm(): JSX.Element {
   return (
     <div className="form__container">
       <form className="form__add-post" onSubmit={(e) => onHandleSubmit(e)}>
+        <label className="form__label">
+          Фото
+          <input value={img} onChange={(e) => setImg(e.target.value)} type="text" />
+        </label>
+        <label className="form__label ">
+          Текст статьи
+          {/* это старый рабочий вариант с кривым инпутом */}
+          {/* <input
         <label className='itemrow'>
         <p className='itemName'>  Фото статьи</p>
         <p className='iteminfo'>
@@ -42,10 +50,13 @@ function AddNewsForm(): JSX.Element {
             onChange={(e) => setText(e.target.value)}
             type="text"
           />  */}
- 
-        
-             </label>
- 
+          <textarea
+            minLength={20}
+            className="biginput"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+          />
+        </label>
 
         <button className="btn" type="submit">
           Добавить статью

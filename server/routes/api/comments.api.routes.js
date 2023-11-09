@@ -32,7 +32,6 @@ router.delete('/:commentId', async (req, res) => {
     const rate = await Rate.findOne({
       where: { user_id: comment.user_id, service_id: comment.service_id },
     });
-    // console.log(comment);
     const data = {
       comment_id: comment.id,
       service_id: comment.service_id,

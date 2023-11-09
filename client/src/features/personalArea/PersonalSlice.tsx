@@ -18,13 +18,6 @@ export const loadUslugasOrder = createAsyncThunk('load/uslugaprice', () => fetch
 
 export const loadOrderItems = createAsyncThunk('load/orderItems', () => fetchLoadOrderItems());
 
-// export const upStatusService = createAsyncThunk('update/status', (id: Service) =>
-//   fetchUpdateStatus(id),
-// );
-// export const deleteOneService = createAsyncThunk('update/status', (id: Service) =>
-//   fetchDeleteOne(id),
-// );
-
 const initialState: AuthState = {
   user: undefined,
   service: undefined,

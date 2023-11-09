@@ -1,31 +1,25 @@
 import React, { useState } from 'react';
 import './style/modal.css';
-import { RootState, useAppDispatch } from '../../redux/store';
-import { addNews, changeNews } from '../news/newsSlice';
-import { useSelector } from 'react-redux';
-import { Post } from './types/Post';
+import { useAppDispatch } from '../../redux/store';
+import { changeNews } from './newsSlice';
+import type { Post } from './types/Post';
 
 function ChangeNewsForm({
   post,
-  setModalActive,
+  onHandleSetModal,
 }: {
   post: Post;
-  setModalActive: Dispatch<SetStateAction<boolean>>;
+  onHandleSetModal: () => void;
 }): JSX.Element {
   const [img, setImg] = useState(post?.img);
   const [text, setText] = useState(post?.text);
-  1;
+
   const dispatch = useAppDispatch();
-  const onHandleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-    dispatch(addNews({ img, text }));
-    setImg('');
-    setText('');
-  };
+
   const onHandleChange = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     dispatch(changeNews({ id: post.id, img, text }));
-    setModalActive(false);
+    onHandleSetModal();
   };
 
   return (
@@ -39,7 +33,7 @@ function ChangeNewsForm({
         <label className="form__label ">
           Текст статьи
           <textarea
-            minlength="20"
+            minLength={20}
             className="biginput"
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -50,7 +44,7 @@ function ChangeNewsForm({
         <button className="btn" type="submit">
           Сохранить изменения
         </button>
-        <button onClick={() => setModalActive(false)} className="btn" type="button">
+        <button onClick={onHandleSetModal} className="btn" type="button">
           Отмена
         </button>
       </form>

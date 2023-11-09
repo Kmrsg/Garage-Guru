@@ -1,8 +1,10 @@
+/* eslint-disable import/no-duplicates */
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteComment } from './servicesSlice';
-import type { Comment, Rate, ServiceCard } from './types/type';
+import { useSelector } from 'react-redux';
 import ReactStars from 'react-rating-stars-component';
+import { deleteComment } from './servicesSlice';
+import { useAppDispatch } from '../../redux/store';
+import type { Comment, ServiceCard } from './types/type';
 import type { RootState } from '../../redux/store';
 
 export default function CommentItem({
@@ -12,7 +14,7 @@ export default function CommentItem({
   comment: Comment;
   service: ServiceCard;
 }): JSX.Element {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const user = useSelector((store: RootState) => store.auth.user);
   const rate = service.Rates.find(
     (el) => el.service_id === service.id && el.user_id === comment.user_id,

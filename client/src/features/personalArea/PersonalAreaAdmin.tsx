@@ -13,10 +13,6 @@ function PersonalAreaAdmin(): JSX.Element {
   const [selectedOption, setSelectedOption] = useState('');
   const [emailPosik, setEmailPoisk] = useState('');
 
-  const handleSelectChange = (event: any) => {
-    setSelectedOption(event.target.value);
-  };
-
   const filteredServices = service.filter((el) => {
     if (selectedOption === 'Активированные аккаунты') {
       return el.isChecked === true && el.email.startsWith(emailPosik);
@@ -40,7 +36,7 @@ function PersonalAreaAdmin(): JSX.Element {
       <select
    
         value={selectedOption}
-        onChange={(event) => handleSelectChange(event)}
+        onChange={(e) => setSelectedOption(e.target.value)}
       >
         <option disabled value="">
           Сортировать аккаунты

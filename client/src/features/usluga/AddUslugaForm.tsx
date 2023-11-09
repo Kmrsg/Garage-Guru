@@ -26,12 +26,19 @@ export default function AddUslugaForm({ service }: { service: ServiceCard }): JS
     const usluga_id = uslugas.find((elem) => elem.title === usluga)?.id;
 
     dispatch(
-      addUsluga({ service_id: service.id, mark_id, carModel_id: model_id, usluga_id, cost: +cost }),
+      addUsluga({
+        service_id: service.id,
+        mark_id: mark_id!,
+        carModel_id: model_id!,
+        usluga_id: usluga_id!,
+        cost: +cost,
+        id: 100,
+      }),
     );
   };
 
   return (
-    <div className='uslugas'>
+    <div className="uslugas">
       <form id="usluga" onSubmit={onHandleAdd}>
         <select name="usluga" onChange={(e) => setUsluga(e.target.value)}>
           <option value="1">Выберите услугу</option>
@@ -68,7 +75,13 @@ export default function AddUslugaForm({ service }: { service: ServiceCard }): JS
                 )),
             )}
         </select>
-        <input className='costinput' placeholder='Установите цену' type="number" name="cost" value={cost} onChange={(e) => setCost(e.target.value)} />
+        <input
+          className="costinput"
+          type="number"
+          name="cost"
+          value={cost}
+          onChange={(e) => setCost(e.target.value)}
+        />
         {serviceAuth && <button type="submit">Добавить услугу</button>}
       </form>
     </div>

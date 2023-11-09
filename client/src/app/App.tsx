@@ -57,18 +57,6 @@ function App(): JSX.Element {
 
   return (
     <div id="huge" className={`App ${isPageClickable ? '' : 'unclickable'}`}>
-      {/* {isPageClickable == false && (
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '0vh', // Задайте желаемую высоту, чтобы текст был посередине
-          }}
-        >
-          <h1>Pдравствуйте, {service?.title}, ваша учетная пока не активна</h1>
-        </div>
-      )} */}
       <Routes>
         <Route path="/" element={<NavBar />}>
           <Route path="/reg" element={<SignIn />} />

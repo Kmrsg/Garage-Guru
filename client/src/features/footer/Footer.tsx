@@ -1,6 +1,6 @@
 import React from 'react';
 import './style/style.css';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { BiSolidToTop } from 'react-icons/bi';
 import pic from '../../images/7.png';
 
@@ -9,6 +9,7 @@ function Footer(): JSX.Element {
     <div className="footer" id="footer">
       <div className="box-container">
         <div className="box">
+
         <h3>Навигация</h3>
           <li className="footeritem">
             <NavLink className="footerlink" to="/main">
@@ -61,7 +62,7 @@ function Footer(): JSX.Element {
         <div className="credit shadow">
           {' '}
           created by LAPOCHKI
-          <button className="totop" onClick={() => window.scrollTo({ top: 0, bahavior: 'smooth' })}>
+          <button type="button" className="totop" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
             <BiSolidToTop />
           </button>
          

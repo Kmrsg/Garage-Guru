@@ -55,5 +55,7 @@ module.exports = {
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/naming-convention': 'off',
     'no-return-assign': 'off',
+    '@typescript-eslint/consistent-type-imports': 'off',
+    'react/jsx-boolean-value': 'off',
   },
 };
