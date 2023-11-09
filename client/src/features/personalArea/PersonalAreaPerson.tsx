@@ -109,7 +109,7 @@ function PersonalAreaPerson(): JSX.Element {
         )}
       </div>
 
-<!--     <div>
+      {/* <!--     <div>
       <div>Name: {user?.name}</div>
       <div>Email: {user?.email}</div>
       <div>Phone-number: {user?.phone}</div>
@@ -160,7 +160,7 @@ function PersonalAreaPerson(): JSX.Element {
               </div>
             ))} -->
 <!--         </div>
-      )} -->
+      )} --> */}
     </div>
   );
 }

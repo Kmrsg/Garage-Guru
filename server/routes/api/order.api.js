@@ -10,59 +10,18 @@ const { Mark } = require('../../db/models');
 router.post('/', async (req, res) => {
   try {
     if (req.session.userId) {
-//       const { user_id, service_id, data, uslugaPrice_id } = req.body;
-//       console.log(req.body);
-
-//       const activeOrder = await Order.findOne({
-//         where: {
-//           user_id: user_id,
-//         },
-//       });
-//       if (!activeOrder) {
-//         console.log('0000000');
-//         const order = await Order.create({
-//           user_id: user_id,
-//         });
-    const { user_id, service_id, data, uslugaPrice_id } = req.body;
-    // console.log(req.body);
-
-    const activeOrder = await Order.findOne({
-      where: {
-        user_id: user_id,
-      },
-    });
-    if (!activeOrder) {
-      // console.log("0000000");
-      const order = await Order.create({
-        user_id: user_id,
-      });
-      // console.log(order);
-      const orderItem = await OrderItem.create({
-        order_id: order.id,
-        uslugaPrice_id: uslugaPrice_id,
-        date: data,
-        service_id,
-      });
-      const item = await Order.findOne({
-        where: { id: order.id },
-        include: {
-          model: OrderItem,
-          include: { model: UslugaPrice, include: [Usluga, CarModel, Mark] },
+      const { user_id, service_id, data, uslugaPrice_id } = req.body;
+      const activeOrder = await Order.findOne({
+        where: {
+          user_id: user_id,
         },
       });
-      res.status(200).json(item);
-    }
-
-    if (activeOrder) {
-      // console.log("/////");
-      const active = await OrderItem.findOne({
-        where: { order_id: activeOrder.id, uslugaPrice_id, isClosed: false },
-      });
-
-      if (active) {
-        console.log("=======");
-        res.json({ message: "У вас уже есть активная запись на эту услугу" });
-      } else {
+      if (!activeOrder) {
+        // console.log("0000000");
+        const order = await Order.create({
+          user_id: user_id,
+        });
+        // console.log(order);
         const orderItem = await OrderItem.create({
           order_id: order.id,
           uslugaPrice_id: uslugaPrice_id,
@@ -81,11 +40,17 @@ router.post('/', async (req, res) => {
 
       if (activeOrder) {
         const active = await OrderItem.findOne({
-          where: { order_id: activeOrder.id, uslugaPrice_id, isClosed: false },
+          where: {
+            order_id: activeOrder.id,
+            uslugaPrice_id,
+            isClosed: false,
+          },
         });
 
         if (active) {
-          res.json({ message: 'У вас уже есть активная запись на эту услугу' });
+          res.json({
+            message: 'У вас уже есть активная запись на эту услугу',
+          });
         } else {
           const orderItem = await OrderItem.create({
             order_id: activeOrder.id,
