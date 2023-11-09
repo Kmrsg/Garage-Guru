@@ -45,10 +45,6 @@ function PersonalArea(): JSX.Element {
     }
   };
 
-  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>): void {
-    throw new Error('Function not implemented.');
-  }
-
   return (
     <div style={{ display: 'flex', flexDirection: 'row', marginLeft: '-20vw' }}>
       <div className="servicelk">
@@ -61,13 +57,6 @@ function PersonalArea(): JSX.Element {
         {!photo && (
           <>
             <input placeholder="url image" value={img} onChange={(e) => setImg(e.target.value)} />
-            <div>или</div>
-            <input
-              style={{ width: '300px' }}
-              type="file"
-              accept="image/*"
-              onChange={(e) => handleFileChange(e)}
-            />
             <button className="btn" type="button" onClick={(e) => handleServicePut(e)}>
               Сохранить
             </button>

@@ -11,6 +11,7 @@ import {
 } from './api/api';
 import type { Auth2, Service, User } from './type';
 import { fetchUpdatePhoto } from '../personalArea/api';
+import { ServiceCard } from '../service/types/type';
 
 const initialState: Auth2 = {
   user: undefined,
@@ -26,7 +27,7 @@ export const signUp = createAsyncThunk('auth/signup', (user: User) => fetchSignU
 
 export const signIn = createAsyncThunk('auth/signin', (user: User) => fetchSignIn(user));
 
-export const signInService = createAsyncThunk('auth/signin/service', (service: Service) =>
+export const signInService = createAsyncThunk('auth/signin/service', (service: ServiceCard) =>
   fetchSignInService(service),
 );
 

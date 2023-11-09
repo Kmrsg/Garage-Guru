@@ -16,7 +16,7 @@ export default function ServicePage(): JSX.Element {
   const service = useSelector((store: RootState) =>
     store.servicesSlice.services.find((servicee) => serviceId && servicee.id === +serviceId),
   );
-  console.log(service);
+  const serviceAuth = useSelector((store: RootState) => store.auth.service);
 
   return (
     <div className="services-page">
@@ -40,7 +40,7 @@ export default function ServicePage(): JSX.Element {
         </div>
         {flag === 'sale' ? (
           <div className="sales-container">
-            <AddSaleForm service={service!} />
+            {serviceAuth && serviceAuth.id === service?.id && <AddSaleForm service={service!} />}
             {service?.Sales.map((sale) => <SaleItem sale={sale} key={sale.id} />)}
           </div>
         ) : flag === 'usluga' ? (

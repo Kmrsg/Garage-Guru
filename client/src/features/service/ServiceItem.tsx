@@ -5,12 +5,8 @@ import type { ServiceCard } from './types/type';
 import './style/style.css';
 
 export default function ServiceItem({ service }: { service: ServiceCard }): JSX.Element {
-  let rating = 0;
   const rate = service.Rates.reduce((acc, el) => (acc += el.score), 0) / service.Rates.length;
   const comments = service.Comments.length;
-  if (rate) {
-    rating = rate;
-  }
   return (
     <div className="service-card">
       <h3 className="servicename">{service.title}</h3>

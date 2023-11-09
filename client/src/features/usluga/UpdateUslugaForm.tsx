@@ -14,17 +14,18 @@ export default function UpdateUslugaForm({
   onHandleFlag: () => void;
 }): JSX.Element {
   const dispatch = useAppDispatch();
-  const [marka, setMarka] = useState(price.Mark.title);
+  const [marka, setMarka] = useState(price.Mark!.title);
   const [cost, setCost] = useState(price.cost);
-  const [model, setModel] = useState(price.CarModel.title);
-  const [usluga, setUsluga] = useState(price.Usluga.title);
+  const [model, setModel] = useState(price.CarModel!.title);
+  const [usluga, setUsluga] = useState(price.Usluga!.title);
   const uslugas = useSelector((store: RootState) => store.uslugas.uslugas);
   const marks = useSelector((store: RootState) => store.uslugas.marks);
 
   const onHandleUpd = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     const mark_id = marks.find((el) => el.title === marka)?.id;
-    const model_id = marks.find((el) => el.title === marka)
+    const model_id = marks
+      .find((el) => el.title === marka)
       .CarModels.find((carModel) => carModel.title === model)?.id;
     const usluga_id = uslugas.find((elem) => elem.title === usluga)?.id;
 

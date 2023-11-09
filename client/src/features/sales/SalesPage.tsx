@@ -7,8 +7,6 @@ import type { RootState } from '../../redux/store';
 // import spinner from '../../assets/Spinner-1s-200px.svg';
 
 function SalesPage(): JSX.Element {
-  const sales = useSelector((store: RootState) => store.sales.sales);
-  const admin = useSelector((store: RootState) => store.auth.user);
   const services = useSelector((store: RootState) => store.servicesSlice.services);
   // const error = useSelector((store: RootState) => store.sales.error);
   // const loading = useSelector((store: RootState) => store.sales.loading);

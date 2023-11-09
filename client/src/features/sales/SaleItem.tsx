@@ -11,24 +11,26 @@ export default function SaleItem({ sale }: { sale: Sale }): JSX.Element {
   const [flag, setFlag] = useState(false);
   const [text, setText] = useState(sale.text);
   const [img, setImg] = useState(sale.img);
-  const admin = useSelector((store: RootState) => store.auth.user);
+  const service = useSelector((store: RootState) => store.auth.service);
 
   const onHandleUpd = (e: React.FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-    dispatch(updateSale({ id: sale.id, text, img, service_id: sale.service_id }));
-    setFlag((prev) => !prev);
+    if (service && service.id === sale.service_id) {
+      e.preventDefault();
+      dispatch(updateSale({ id: sale.id, text, img, service_id: sale.service_id }));
+      setFlag((prev) => !prev);
+    }
   };
   const onHandleDelete = (): void => {
-    console.log(sale);
-
-    dispatch(deleteSale(sale.id));
+    if (service && service.id === sale.service_id) {
+      dispatch(deleteSale(sale.id));
+    }
   };
   const navigate = useNavigate();
   return (
     <div className="sale-card">
       <img className="saleimg" src={sale.img} alt="saleImg" />
       <h3>{sale.text}</h3>
-      {admin?.id === 1 && (
+      {service && service.id === sale.service_id && (
         <>
           <button className="btn" onClick={onHandleDelete} type="button">
             удалить акцию

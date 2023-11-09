@@ -1,7 +1,18 @@
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
 const { User } = require('../../db/models');
-const { Service } = require('../../db/models');
+const {
+  Service,
+  Sale,
+  UslugaPrice,
+  Mark,
+  CarModel,
+  Usluga,
+  Comment,
+  Rate,
+  OrderItem,
+  Order,
+} = require('../../db/models');
 
 router.post('/sign-up', async (req, res) => {
   try {
@@ -85,7 +96,27 @@ router.post('/sign-up/service', async (req, res) => {
         isChecked: false,
       });
       req.session.serviceId = service.id;
-      res.status(200).json(service);
+      const serviceAuth = await Service.findOne({
+        where: { id: service.id },
+        include: [
+          { model: Sale },
+          { model: Rate },
+          { model: Comment, include: [User] },
+          {
+            model: UslugaPrice,
+            include: [
+              Mark,
+              CarModel,
+              Usluga,
+              {
+                model: OrderItem,
+                include: { model: Order, include: { model: User } },
+              },
+            ],
+          },
+        ],
+      });
+      res.status(200).json(serviceAuth);
     }
   } catch (error) {
     console.log(error, '----------');
@@ -97,7 +128,26 @@ router.post('/sign-in/service', async (req, res) => {
   try {
     if (!req.session.userId && !req.session.serviceId) {
       const { email, password } = req.body;
-      const seervice = await Service.findOne({ where: { email: email } });
+      const seervice = await Service.findOne({
+        where: { email: email },
+        include: [
+          { model: Sale },
+          { model: Rate },
+          { model: Comment, include: [User] },
+          {
+            model: UslugaPrice,
+            include: [
+              Mark,
+              CarModel,
+              Usluga,
+              {
+                model: OrderItem,
+                include: { model: Order, include: { model: User } },
+              },
+            ],
+          },
+        ],
+      });
       if (!seervice) {
         res.json({
           message: 'Такого сервиса не существует или пароль неверный',
@@ -144,6 +194,23 @@ router.get('/check/service', async (req, res) => {
     if (req.session.serviceId) {
       const service = await Service.findOne({
         where: { id: req.session.serviceId },
+        include: [
+          { model: Sale },
+          { model: Rate },
+          { model: Comment, include: [User] },
+          {
+            model: UslugaPrice,
+            include: [
+              Mark,
+              CarModel,
+              Usluga,
+              {
+                model: OrderItem,
+                include: { model: Order, include: { model: User } },
+              },
+            ],
+          },
+        ],
       });
       res.status(200).json({ message: 'success', service });
       return;

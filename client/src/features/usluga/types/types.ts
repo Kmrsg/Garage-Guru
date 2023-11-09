@@ -1,4 +1,3 @@
-import { OrderItem } from 'sequelize';
 import type { User } from '../../personalArea/type';
 
 export type UslugaPrice = {

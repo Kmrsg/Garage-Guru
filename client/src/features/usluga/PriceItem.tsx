@@ -13,7 +13,6 @@ import AddOrderWindow from './AddOrderWindow';
 export default function PriceItem({ price }: { price: UslugaPrice }): JSX.Element {
   const dispatch = useAppDispatch();
   const [flag, setFlag] = useState(false);
-  const [window, setWindow] = useState(0);
   const [rega, setRega] = useState(false);
   const serviceAuth = useSelector((store: RootState) => store.auth.service);
   const userAuth = useSelector((store: RootState) => store.auth.user);
@@ -30,9 +29,6 @@ export default function PriceItem({ price }: { price: UslugaPrice }): JSX.Elemen
     setFlag((prev) => !prev);
   };
 
-  const handleWindowChange = (newWindow: number): void => {
-    setWindow(newWindow);
-  };
   const handleButtonClickRega = (): void => {
     setRega(true);
   };
@@ -57,7 +53,7 @@ export default function PriceItem({ price }: { price: UslugaPrice }): JSX.Elemen
         <p className="itemName"> Цена:</p>
         <p className="iteminfo"> {price.cost} рублей</p>
       </h4>
-      {serviceAuth === price.service_id && (
+      {serviceAuth?.id === price.service_id && (
         <>
           <button
             className="btn"

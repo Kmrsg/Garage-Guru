@@ -2,8 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { CommentData, Sale, SaleId, ServicesState } from './types/type';
 import * as api from './api/api';
 import { fetchDeleteOne, fetchUpdateItemStatus, fetchUpdateStatus } from '../personalArea/api';
-import type { Service } from '../LogReg/type';
-import type { OrderItemID, UpdateStatus } from '../personalArea/type';
+import type { UpdateStatus } from '../personalArea/type';
 
 const initialState: ServicesState = {
   services: [],

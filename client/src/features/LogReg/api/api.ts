@@ -23,7 +23,7 @@ export const fetchSignIn = async (user: User): Promise<{ message: string; user: 
 
 export const fetchSignInService = async (
   service: Service,
-): Promise<{ message: string; service: Service }> => {
+): Promise<{ message: string; service: ServiceCard }> => {
   const res = await fetch('/api/auth/sign-in/service', {
     method: 'post',
     headers: {
@@ -49,7 +49,7 @@ export const fetchSignUp = async (user: User): Promise<User> => {
   return res.json();
 };
 
-export const fetchSignUpService = async (service: Service): Promise<Service> => {
+export const fetchSignUpService = async (service: Service): Promise<ServiceCard> => {
   const res = await fetch('/api/auth/sign-up/service', {
     method: 'post',
     headers: {
