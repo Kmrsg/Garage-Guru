@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
-import { useAppDispatch } from '../../redux/store';
+import { RootState, useAppDispatch } from '../../redux/store';
 import { deleteSale, updateSale } from '../service/servicesSlice';
 import type { Sale } from '../service/types/type';
 import './style/style.css';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export default function SaleItem({ sale }: { sale: Sale }): JSX.Element {
   const dispatch = useAppDispatch();
   const [flag, setFlag] = useState(false);
   const [text, setText] = useState(sale.text);
   const [img, setImg] = useState(sale.img);
+  const admin = useSelector((store: RootState) => store.auth.user);
 
   const onHandleUpd = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
@@ -20,16 +23,27 @@ export default function SaleItem({ sale }: { sale: Sale }): JSX.Element {
 
     dispatch(deleteSale(sale.id));
   };
-
+  const navigate = useNavigate();
   return (
     <div className="sale-card">
       <img className="saleimg" src={sale.img} alt="saleImg" />
       <h3>{sale.text}</h3>
-      <button className="btn" onClick={onHandleDelete} type="button">
-        удалить акцию
-      </button>
-      <button className="btn" onClick={() => setFlag(!flag)} type="button">
-        Редактировать
+      {admin?.id === 1 && (
+        <>
+          <button className="btn" onClick={onHandleDelete} type="button">
+            удалить акцию
+          </button>
+          <button className="btn" onClick={() => setFlag(!flag)} type="button">
+            Редактировать
+          </button>
+        </>
+      )}
+      <button
+        className="btn"
+        onClick={() => navigate(`/services/${sale.service_id}`)}
+        type="button"
+      >
+        Подробнее
       </button>
       {flag && (
         <form onSubmit={onHandleUpd}>

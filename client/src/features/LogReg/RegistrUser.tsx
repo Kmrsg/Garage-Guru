@@ -45,10 +45,9 @@ function SignIn(): JSX.Element {
   const fontService = function (): void {
     const select = document.getElementById('selectClickService');
     select?.addEventListener('change', () => {
-      const { value } = select;
-      if (value) {
-        
-        setTearif(value);
+      const selectElement = select as HTMLSelectElement;
+      if (selectElement.value) {
+        setTearif(selectElement.value);
       }
     });
   };
@@ -83,72 +82,77 @@ function SignIn(): JSX.Element {
                   void onHandleSignIn(e);
                 }}
               >
-                <label className='itemrow' htmlFor="a">
-                <p className='itemName'>Имя</p>
-                <p className='iteminfo'>    <input
-                    placeholder="name"
-                    value={name}
-                    type="text"
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                  /> </p>
-                
-        
+                <label className="itemrow" htmlFor="a">
+                  <p className="itemName">Имя</p>
+                  <p className="iteminfo">
+                    {' '}
+                    <input
+                      placeholder="name"
+                      value={name}
+                      type="text"
+                      onChange={(e) => setName(e.target.value)}
+                      required
+                    />{' '}
+                  </p>
                 </label>
-                <label className='itemrow' htmlFor="a">
-                <p className='itemName'>Email</p>
-                <p className='iteminfo'>   <input
-                    value={email}
-                    placeholder="email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    type="text"
-                    required
-                  /> </p>
-                 
-               
+                <label className="itemrow" htmlFor="a">
+                  <p className="itemName">Email</p>
+                  <p className="iteminfo">
+                    {' '}
+                    <input
+                      value={email}
+                      placeholder="email"
+                      onChange={(e) => setEmail(e.target.value)}
+                      type="text"
+                      required
+                    />{' '}
+                  </p>
                 </label>
 
-                <label className='itemrow' htmlFor="a">
-                <p className='itemName'>Телефон +7</p>
-                <p className='iteminfo'>  <input
-                    placeholder="phone"
-                    type="tel"
-                    name="tel"
-                    maxLength={11}
-                    value={phone}
-                    onChange={(e) => {
-                      const phoneWithoutDashes = e.target.value.replace(/-/g, ''); // Удаляем все существующие дефисы из значения ввода
-                      const phoneWithDashes = phoneWithoutDashes.replace(
-                        /(\d{3})(\d{3})(\d{2})(\d{2})/g,
-                        '$1-$2-$3-$4',
-                      ); // Добавляем дефисы после каждой третьей цифры
-                      setPhone(phoneWithDashes);
-                    }}
-                    required
-                  /> </p>
-                  
-                
+                <label className="itemrow" htmlFor="a">
+                  <p className="itemName">Телефон +7</p>
+                  <p className="iteminfo">
+                    {' '}
+                    <input
+                      placeholder="phone"
+                      type="tel"
+                      name="tel"
+                      maxLength={11}
+                      value={phone}
+                      onChange={(e) => {
+                        const phoneWithoutDashes = e.target.value.replace(/-/g, ''); // Удаляем все существующие дефисы из значения ввода
+                        const phoneWithDashes = phoneWithoutDashes.replace(
+                          /(\d{3})(\d{3})(\d{2})(\d{2})/g,
+                          '$1-$2-$3-$4',
+                        ); // Добавляем дефисы после каждой третьей цифры
+                        setPhone(phoneWithDashes);
+                      }}
+                      required
+                    />{' '}
+                  </p>
                 </label>
-                <label className='itemrow' htmlFor="d">
-                <p className='itemName'>Пароль</p>
-                <p className='iteminfo'>
-                <input
-                    value={password}
-                    placeholder="password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    name="password"
-                    type="password"
-                    required
-                  /> </p>
-                  
-                
+                <label className="itemrow" htmlFor="d">
+                  <p className="itemName">Пароль</p>
+                  <p className="iteminfo">
+                    <input
+                      value={password}
+                      placeholder="password"
+                      onChange={(e) => setPassword(e.target.value)}
+                      name="password"
+                      type="password"
+                      required
+                    />{' '}
+                  </p>
                 </label>
-                <button className='btn' type="submit" onClick={() => setSubmitted(true)}>
+                <button className="btn" type="submit" onClick={() => setSubmitted(true)}>
                   Submit
                 </button>
-                <button className='btn' type="submit">Забыли пароль?</button>
+                <button className="btn" type="submit">
+                  Забыли пароль?
+                </button>
               </form>
-              <button className='btn'
+              <button
+                className="btn"
                 type="button"
                 onClick={() => {
                   setSign(!sign);
@@ -167,41 +171,43 @@ function SignIn(): JSX.Element {
               style={{ display: 'flex', flexDirection: 'column' }}
               onSubmit={(e) => void onHandlePlayerAdd(e)}
             >
-             
-              <label className='itemrow' htmlFor="a">
-                <p className='itemName'>Email</p>
-                <p className='iteminfo'>   <input
+              <label className="itemrow" htmlFor="a">
+                <p className="itemName">Email</p>
+                <p className="iteminfo">
+                  {' '}
+                  <input
                     value={email}
                     placeholder="email"
                     onChange={(e) => setEmail(e.target.value)}
                     type="text"
                     required
-                  /> </p>
-                 
-               
-                </label>
+                  />{' '}
+                </p>
+              </label>
 
-                <label className='itemrow' htmlFor="d">
-                <p className='itemName'>Пароль</p>
-                <p className='iteminfo'>
-                <input
+              <label className="itemrow" htmlFor="d">
+                <p className="itemName">Пароль</p>
+                <p className="iteminfo">
+                  <input
                     value={password}
                     placeholder="password"
                     onChange={(e) => setPassword(e.target.value)}
                     name="password"
                     type="password"
                     required
-                  /> </p>
-                  
-                
-                </label>
-              <button className='btn' type="submit" onClick={() => setSubmitted(true)}>
+                  />{' '}
+                </p>
+              </label>
+              <button className="btn" type="submit" onClick={() => setSubmitted(true)}>
                 Войти
               </button>
-              <button className='btn' type="submit">Забыли пароль?</button>
+              <button className="btn" type="submit">
+                Забыли пароль?
+              </button>
               {submitted === true && errorUser && <h3>{errorUser}</h3>}
             </form>
-            <button className='btn'
+            <button
+              className="btn"
               type="button"
               onClick={() => {
                 setSign(false);

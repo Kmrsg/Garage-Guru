@@ -42,22 +42,22 @@ export default function PriceItem({ price }: { price: UslugaPrice }): JSX.Elemen
   return (
     <div className="price-item">
       <h4 className="itemrow">
-        <p className='itemName'> Вид услуги:</p>
-        <p className='iteminfo'>{price.Usluga.title}</p>
-        </h4>
-      <h4 className="itemrow">
-      <p className='itemName'> Марка: </p>
-        <p className='iteminfo'>  {price.Mark.title}</p>
+        <p className="itemName"> Вид услуги:</p>
+        <p className="iteminfo">{price.Usluga.title}</p>
       </h4>
       <h4 className="itemrow">
-      <p className='itemName'>Модель: </p>
-        <p className='iteminfo'>{price.CarModel.title}</p>
-         </h4>
+        <p className="itemName"> Марка: </p>
+        <p className="iteminfo"> {price.Mark.title}</p>
+      </h4>
       <h4 className="itemrow">
-      <p className='itemName'> Цена:</p>
-        <p className='iteminfo'> {price.cost} рублей</p>
-       </h4>
-      {serviceAuth && (
+        <p className="itemName">Модель: </p>
+        <p className="iteminfo">{price.CarModel.title}</p>
+      </h4>
+      <h4 className="itemrow">
+        <p className="itemName"> Цена:</p>
+        <p className="iteminfo"> {price.cost} рублей</p>
+      </h4>
+      {serviceAuth === price.service_id && (
         <>
           <button
             className="btn"
@@ -93,7 +93,7 @@ export default function PriceItem({ price }: { price: UslugaPrice }): JSX.Elemen
       {rega === true && (
         <div className="zPlan">
           <div className="containerPay" style={{ color: 'black' }}>
-            <button className='btn' onClick={() => navigate('/reg')} type="submit">
+            <button className="btn" onClick={() => navigate('/reg')} type="submit">
               Нажмите чтобы зарегистрироваться
             </button>
           </div>

@@ -8,10 +8,10 @@ export type UslugaPrice = {
   cost: number;
   mark_id: number;
   carModel_id: number;
-  CarModel: CarModel;
-  Mark: Mark;
-  Usluga: Usluga;
-  OrderItems: OrderItemAdd[];
+  CarModel?: CarModel;
+  Mark?: Mark;
+  Usluga?: Usluga;
+  OrderItems?: OrderItemAdd[];
 };
 
 export type Usluga = {
@@ -43,6 +43,7 @@ export type UslugaPriceState = {
 };
 
 export type OrderAdd = {
+  [x: string]: any;
   id: number;
   user_id: number;
   // OrderItems: OrderItemAdd[];

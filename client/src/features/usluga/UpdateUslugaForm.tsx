@@ -24,8 +24,7 @@ export default function UpdateUslugaForm({
   const onHandleUpd = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     const mark_id = marks.find((el) => el.title === marka)?.id;
-    const model_id = marks
-      .find((el) => el.title === marka)
+    const model_id = marks.find((el) => el.title === marka)
       .CarModels.find((carModel) => carModel.title === model)?.id;
     const usluga_id = uslugas.find((elem) => elem.title === usluga)?.id;
 

@@ -72,15 +72,10 @@ function NavBar(): JSX.Element {
         </li>
         {service || user ? (
           <>
-            <NavLink
-              className="nav-item"
-              
-              onClick={onHandleLogout}
-              to="/"
-            >
+            <NavLink className="nav-item" onClick={onHandleLogout} to="/">
               Выйти
             </NavLink>
-            {user && <div className="nav-hello">Привет, {user.name}</div>}
+            {user && <div className="nav-hello">{user.name}</div>}
             {service && <div className="nav-hello"> {service.title}</div>}
           </>
         ) : (
@@ -91,7 +86,7 @@ function NavBar(): JSX.Element {
           </li>
         )}
         {service && (
-          <NavLink className="nav-item"  to="/personalArea">
+          <NavLink className="nav-item" to="/personalArea">
             Личный кабинет
             <img
               style={{ backgroundColor: 'white', width: '30px' }}

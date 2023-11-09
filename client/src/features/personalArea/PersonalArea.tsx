@@ -6,14 +6,13 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, type RootState } from '../../redux/store';
 import Calendarr from './Calendar';
-import { checkService, updatePhoto } from '../LogReg/AuthSlice';
-import type { OrderItemID, UpdateStatus } from './type';
-import { loadOrderItems } from './PersonalSlice';
+import { updatePhoto } from '../LogReg/AuthSlice';
+import type { UpdateStatus } from './type';
 import { updateStatusOrderItem } from '../service/servicesSlice';
 
 function PersonalArea(): JSX.Element {
   const [photo, setPhoto] = useState(true);
-  const [widt, setWidt] = useState(true);
+  const [widt, setWidt] = useState(false);
   const dispatch = useAppDispatch();
   const service = useSelector((store: RootState) => store.auth.service);
   const [img, setImg] = useState(service?.img);
@@ -46,58 +45,60 @@ function PersonalArea(): JSX.Element {
     }
   };
 
+  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>): void {
+    throw new Error('Function not implemented.');
+  }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'row', marginLeft: '-20vw' }}>
-       <div className='servicelk'>
-      <h1 className='head' >Личный кабинет автосервиса</h1>
-      <img style={{ width: '400px' }} src={service?.img} alt="photka" />
+      <div className="servicelk">
+        <h1 className="head">Личный кабинет автосервиса</h1>
+        <img style={{ width: '400px' }} src={service?.img} alt="photka" />
 
-      <button className='btn' type="submit" onClick={() => setPhoto(!photo)}>
-        Изменить фото аккаунта
-      </button>
-      {!photo && (
-        <>
-          <input placeholder="url image" value={img} onChange={(e) => setImg(e.target.value)} />
-          <div>или</div>
-          <input
-            style={{ width: '300px' }}
-            type="file"
-            accept="image/*"
-            onChange={(e) => handleFileChange(e)}
-          />
-          <button className='btn' type="button" onClick={(e) => handleServicePut(e)}>
-            Сохранить
-          </button>
-        </>
-      )}
-      <div className='itemrow'>
-      <div className='itemName'>Название салона:</div>
-      <div className='iteminfo'>{service?.title}</div>
-      </div>
-      <div className='itemrow'>
-      <div className='itemName'>Адрес салона: </div>
-      <div className='iteminfo'>{service?.adress}</div>
-      </div>
-      <div className='itemrow'>
-          
-      <div className='itemName'>Email:</div>
-      <div className='iteminfo'>{service?.email}</div>
-      </div>
-      <div className='itemrow'>
-         
-      <div className='itemName'>Номер телефона:</div>
-      <div className='iteminfo'>{service?.phone}</div>
-      </div>
-      <div className='itemrow'>
-      <div className='itemName'>Ваш тариф:</div>
-      <div className='iteminfo'>{service?.tarif}</div>
-      </div>
+        <button className="btn" type="submit" onClick={() => setPhoto(!photo)}>
+          Изменить фото аккаунта
+        </button>
+        {!photo && (
+          <>
+            <input placeholder="url image" value={img} onChange={(e) => setImg(e.target.value)} />
+            <div>или</div>
+            <input
+              style={{ width: '300px' }}
+              type="file"
+              accept="image/*"
+              onChange={(e) => handleFileChange(e)}
+            />
+            <button className="btn" type="button" onClick={(e) => handleServicePut(e)}>
+              Сохранить
+            </button>
+          </>
+        )}
+        <div className="itemrow">
+          <div className="itemName">Название салона:</div>
+          <div className="iteminfo">{service?.title}</div>
+        </div>
+        <div className="itemrow">
+          <div className="itemName">Адрес салона: </div>
+          <div className="iteminfo">{service?.adress}</div>
+        </div>
+        <div className="itemrow">
+          <div className="itemName">Email:</div>
+          <div className="iteminfo">{service?.email}</div>
+        </div>
+        <div className="itemrow">
+          <div className="itemName">Номер телефона:</div>
+          <div className="iteminfo">{service?.phone}</div>
+        </div>
+        <div className="itemrow">
+          <div className="itemName">Ваш тариф:</div>
+          <div className="iteminfo">{service?.tarif}</div>
+        </div>
 
-           <button className='btn' type="submit" onClick={() => navigate(`/services/${service.id}`)}>
-        Добавить услуги
-      </button>
-      <Calendarr />
+        <button className="btn" type="submit" onClick={() => navigate(`/services/${service?.id}`)}>
+          Добавить услуги
+        </button>
+
+        <Calendarr />
         <div style={{ color: 'white', fontSize: '13px' }}>
           <button
             style={{ width: '30vw' }}
@@ -136,7 +137,7 @@ function PersonalArea(): JSX.Element {
               </div>
               <div style={{ backgroundColor: 'white', color: 'black', fontSize: '2vh' }}>
                 {uslugaPrice &&
-                  uslovie.map((el) => (
+                  uslovie?.map((el) => (
                     <div style={{ display: 'flex', flexDirection: 'row', width: '50vw' }}>
                       <div
                         style={{
@@ -190,7 +191,6 @@ function PersonalArea(): JSX.Element {
             </div>
           )}
         </div>
-        {/* <Calendarr /> */}
       </div>
     </div>
   );

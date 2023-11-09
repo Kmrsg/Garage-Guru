@@ -43,7 +43,7 @@ export default function AddUslugaForm({ service }: { service: ServiceCard }): JS
 
   return (
     <div className="uslugas">
-      <form id="usluga" onSubmit={onHandleAdd}>
+        {serviceAuth && serviceAuth.id === service.id && <form id="usluga" onSubmit={onHandleAdd}>
         <select name="usluga" value={usluga} onChange={(e) => setUsluga(e.target.value)}>
           <option value="">Выберите услугу</option>
           {uslugas.map((uslugaa) => (
@@ -87,8 +87,8 @@ export default function AddUslugaForm({ service }: { service: ServiceCard }): JS
           value={cost}
           onChange={(e) => setCost(e.target.value)}
         />
-        {serviceAuth && <button type="submit">Добавить услугу</button>}
-      </form>
+         <button type="submit">Добавить услугу</button>
+      </form>}
     </div>
   );
 }

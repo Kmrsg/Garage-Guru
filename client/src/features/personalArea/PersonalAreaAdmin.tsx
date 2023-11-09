@@ -31,13 +31,9 @@ function PersonalAreaAdmin(): JSX.Element {
   }, []);
 
   return (
-    <div className='adminPage'>
-      <h1 className='adminh'>Личный кабинет администратора</h1>
-      <select
-   
-        value={selectedOption}
-        onChange={(e) => setSelectedOption(e.target.value)}
-      >
+    <div className="adminPage">
+      <h1 className="adminh">Личный кабинет администратора</h1>
+      <select value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
         <option disabled value="">
           Сортировать аккаунты
         </option>
@@ -45,7 +41,6 @@ function PersonalAreaAdmin(): JSX.Element {
         <option>Неактивированные аккаунты</option>
       </select>
       <input
-   
         placeholder="Поиск сервиса по Email"
         value={emailPosik}
         onChange={(e) => setEmailPoisk(e.target.value)}
