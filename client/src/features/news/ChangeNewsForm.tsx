@@ -15,6 +15,12 @@ function ChangeNewsForm({
   const [text, setText] = useState(post?.text);
 
   const dispatch = useAppDispatch();
+  // const onHandleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+  //   e.preventDefault();
+  //   dispatch(addNews({ img, text }));
+  //   setImg('');
+  //   setText('');
+  // };
 
   const onHandleChange = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();

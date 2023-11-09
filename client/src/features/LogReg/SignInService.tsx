@@ -25,7 +25,7 @@ function SignInService(): JSX.Element {
         <SignUpService />
       ) : (
         <>
-          <h1>Вход(servis) </h1>
+          <h1>Вход(сервис) </h1>
           <div>
             <form
               style={{ display: 'flex', flexDirection: 'column' }}

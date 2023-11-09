@@ -49,7 +49,7 @@ function SignUpService(): JSX.Element {
         <SignInService />
       ) : (
         <div className='regcont'>
-          <h1 >Регистрация Сервиса</h1>
+          <h1 >Регистрация сервиса</h1>
           <form
             
             onSubmit={(e) => {

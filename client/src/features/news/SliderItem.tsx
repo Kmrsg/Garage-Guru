@@ -1,24 +1,20 @@
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import type { Post, PostId } from './types/Post';
 import './style/slider.css';
 import { deleteNews } from './newsSlice';
 import ChangeNewsForm from './ChangeNewsForm';
-import { useAppDispatch } from '../../redux/store';
 import { RootState } from '../../redux/store';
-
 
 function SliderItem({ post }: { post: Post }): JSX.Element {
   const [modalActive, setModalActive] = useState(false);
   const user = useSelector((store: RootState) => store.auth.user);
-  const dispatch = useAppDispatch();
-
+  const dispatch = useDispatch();
 
   const onHandleRemove = (value: PostId): void => {
     dispatch(deleteNews(value));
   };
-  const onHandleSetModal = useCallback(() => setModalActive((prev) => !prev), []);
 
   return (
     <div className="posts_slide_container">
@@ -27,11 +23,11 @@ function SliderItem({ post }: { post: Post }): JSX.Element {
       {user && user.isAdmin && (
         <>
           {' '}
-          <button onClick={() => onHandleRemove()} type="button">
+          <button className='btn' onClick={() => onHandleRemove()} type="button">
             Удалить статью
           </button>
           {modalActive && <ChangeNewsForm post={post} setModalActive={setModalActive} />}
-          <button onClick={() => setModalActive(!modalActive)} type="button">
+          <button className='btn' onClick={() => setModalActive(!modalActive)} type="button">
             Изменить статью
           </button>
         </>

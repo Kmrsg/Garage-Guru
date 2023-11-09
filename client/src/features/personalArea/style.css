@@ -63,10 +63,34 @@ input {
     flex-direction: column;
   }
 
-  .ordercont {
+  .ordercont3 {
+    display: flex;
+    flex-direction: column;
    padding: 30px;
-    background-color: black;
+  
     border: 1px solid yellow;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 20px;
+    width: 600px;
+  }
+  .ordercont {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+ 
+    border: 1px solid yellow;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 20px;
+  }
+  .ordercont2 {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    padding: 30px;
+  
+ 
     display: flex;
     justify-content: space-between;
     border-radius: 20px;
@@ -74,7 +98,7 @@ input {
   .servicelk {
     padding: 30px;
     background-color: black;
-    border: 1px solid yellow;
+    /* border: 1px solid yellow; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -95,4 +119,8 @@ input {
     justify-content: space-between;
   }
 
- 
+ .servicecontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ }
