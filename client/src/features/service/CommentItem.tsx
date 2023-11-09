@@ -19,6 +19,8 @@ export default function CommentItem({
   const rate = service.Rates.find(
     (el) => el.service_id === service.id && el.user_id === comment.user_id,
   );
+  console.log(rate);
+
   const onHandleDelete = (): void => {
     dispatch(deleteComment(comment.id));
   };
@@ -34,19 +36,19 @@ export default function CommentItem({
       <div className="comm-content">
         {' '}
         <section className="user-name">
-          <p className='commname'>{comment.User.name}</p>
+          <p className="commname">{comment.User.name}</p>
         </section>
         <section className="comm-rate">
           <ReactStars value={rating} edit={false} count={5} size={10} activeColor="#ffd700" />
-          <div className='commdate'>{new Date(comment.updatedAt).toLocaleDateString('ru-Ru')}</div>
+          <div className="commdate">{new Date(comment.updatedAt).toLocaleDateString('ru-Ru')}</div>
         </section>
         {user?.id === comment.user_id && (
-        <button className='btnround' type="button" onClick={onHandleDelete}>
-          X
-        </button>
-      )}
+          <button className="btnround" type="button" onClick={onHandleDelete}>
+            X
+          </button>
+        )}
       </div>
-      <div className='commtext'>{comment.text}</div>
+      <div className="commtext">{comment.text}</div>
       {/* {user?.id === comment.user_id && (
         <button className='btnround' type="button" onClick={onHandleDelete}>
           X
