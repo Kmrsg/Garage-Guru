@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import type { RootState } from '../../redux/store';
 import ServicesItemAdmin from './ServicesItemAdmin';
+import './style.css';
 
 function PersonalAreaAdmin(): JSX.Element {
   const user = useSelector((store: RootState) => store.auth.user);
@@ -34,16 +35,10 @@ function PersonalAreaAdmin(): JSX.Element {
   }, []);
 
   return (
-    <div>
+    <div className='adminPage'>
+      <h1 className='adminh'>Личный кабинет администратора</h1>
       <select
-        style={{
-          height: '40px',
-          width: '300px',
-          backgroundColor: 'white',
-          color: 'black',
-          marginBottom: '20px',
-          borderRadius: '7px',
-        }}
+   
         value={selectedOption}
         onChange={(event) => handleSelectChange(event)}
       >
@@ -54,14 +49,7 @@ function PersonalAreaAdmin(): JSX.Element {
         <option>Неактивированные аккаунты</option>
       </select>
       <input
-        style={{
-          height: '40px',
-          width: '300px',
-          backgroundColor: 'white',
-          color: 'black',
-          marginBottom: '20px',
-          borderRadius: '7px',
-        }}
+   
         placeholder="Поиск сервиса по Email"
         value={emailPosik}
         onChange={(e) => setEmailPoisk(e.target.value)}

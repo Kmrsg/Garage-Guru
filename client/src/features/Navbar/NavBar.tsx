@@ -72,15 +72,15 @@ function NavBar(): JSX.Element {
         {service || user ? (
           <>
             <NavLink
-              className="navlink"
-              style={{ color: 'orange' }}
+              className="nav-item"
+              
               onClick={onHandleLogout}
               to="/"
             >
-              logout
+              Выйти
             </NavLink>
-            {user && <div>Hello, {user.name}</div>}
-            {service && <div>{service.title}</div>}
+            {user && <div className="nav-hello">Привет, {user.name}</div>}
+            {service && <div className="nav-hello"> {service.title}</div>}
           </>
         ) : (
           <li className="nav-item">
@@ -90,7 +90,7 @@ function NavBar(): JSX.Element {
           </li>
         )}
         {service && (
-          <NavLink className="navlink" style={{ color: 'orange' }} to="/personalArea">
+          <NavLink className="nav-item"  to="/personalArea">
             Личный кабинет
             <img
               style={{ backgroundColor: 'white', width: '30px' }}
@@ -100,7 +100,7 @@ function NavBar(): JSX.Element {
           </NavLink>
         )}
         {user?.isAdmin && (
-          <NavLink className="navlink" style={{ color: 'orange' }} to="/personalArea/admin">
+          <NavLink className="nav-item" to="/personalArea/admin">
             Личный кабинет
             <img
               style={{ backgroundColor: 'white', width: '20px' }}
@@ -110,10 +110,7 @@ function NavBar(): JSX.Element {
           </NavLink>
         )}{' '}
         {user?.isAdmin === false && (
-          <NavLink
-            style={{ color: 'orange', flexDirection: 'row', display: 'flex' }}
-            to="/personalArea/person"
-          >
+          <NavLink className="nav-item" to="/personalArea/person">
             Личный кабинет
             <img
               style={{

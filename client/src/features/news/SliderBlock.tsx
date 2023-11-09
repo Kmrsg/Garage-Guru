@@ -16,11 +16,11 @@ export default function SliderBlock(): JSX.Element {
   const sliderRef = useRef<Slider | null>(null);
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: false,
     speed: 500,
-    arrows: false,
-    slidesToShow: 1,
+    arrows: true,
+    slidesToShow: 2,
     slidesToScroll: 1,
   };
 

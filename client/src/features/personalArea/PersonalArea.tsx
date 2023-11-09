@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, type RootState } from '../../redux/store';
-// import Calendarr from './Calendar';
+import Calendarr from './Calendar';
 import { checkService, updatePhoto } from '../LogReg/AuthSlice';
 import type { OrderItemID, UpdateStatus } from './type';
 import { loadOrderItems } from './PersonalSlice';
@@ -18,19 +18,10 @@ function PersonalArea(): JSX.Element {
   const service = useSelector((store: RootState) => store.auth.service);
   const [img, setImg] = useState(service?.img);
   const [selectedOption, setSelectedOption] = useState(false);
-  console.log(service?.UslugaPrices);
   const asd = useSelector((store: RootState) => store.servicesSlice.services).find(
     (servs) => servs.id === service?.id,
   );
   const uslugaPrice = asd?.UslugaPrices;
-  console.log(uslugaPrice);
-
-  // console.log(uslugaPrice);
-
-  // const handleServicePut = (e: React.MouseEvent<HTMLButtonElement>): void => {
-  //   e.preventDefault();
-  //   dispatch(updatePhoto({ img, id: service?.id }));
-  // };
 
   const navigate = useNavigate();
 
@@ -55,61 +46,58 @@ function PersonalArea(): JSX.Element {
     }
   };
 
-  // state.services = state.services.map((service) =>
-  //         service.UslugaPrices.filter(
-  //           (uslugaPrice) => uslugaPrice.id === action.payload.uslugaPrice_id,
-  //         ).length > 0
-  //           ? {
-  //               ...service,
-  //               UslugaPrices: service.UslugaPrices.map((usluga) => ({
-  //                 ...usluga,
-  //                 OrderItems: usluga.OrderItems.map((order) =>
-  //                   order.id === action.payload.orderItem.id
-  //                     ? { ...order, isClosed: action.payload.orderItem.isClosed }
-  //                     : order,
-  //                 ),
-  //               })),
-  //             }
-  //           : service,
-  //       );
-  console.log(asd);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'row', marginLeft: '-20vw' }}>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <img style={{ width: '300px' }} src={service?.img} alt="photka" />
+       <div className='servicelk'>
+      <h1 className='head' >Личный кабинет автосервиса</h1>
+      <img style={{ width: '400px' }} src={service?.img} alt="photka" />
 
-        <button type="submit" onClick={() => setPhoto(!photo)}>
-          Изменить фото аккаунта
-        </button>
-        {!photo && (
-          <>
-            <input placeholder="url image" value={img} onChange={(e) => setImg(e.target.value)} />
-            <div>или</div>
-            <input
-              style={{ width: '300px' }}
-              type="file"
-              accept="image/*"
-              onChange={(e) => handleFileChange(e)}
-            />
-            <button type="button" onClick={(e) => handleServicePut(e)}>
-              save
-            </button>
-          </>
-        )}
-        <div style={{ color: 'white', fontSize: '13px' }}>
-          <div>Название салона: {service?.title}</div>
-          <div>Адрес салона: {service?.adress}</div>
-          <div>Email: {service?.email}</div>
-          <div>Номер телефона: {service?.phone}</div>
-          <div>Ваш тариф: {service?.tarif}</div>
-        </div>
+      <button className='btn' type="submit" onClick={() => setPhoto(!photo)}>
+        Изменить фото аккаунта
+      </button>
+      {!photo && (
+        <>
+          <input placeholder="url image" value={img} onChange={(e) => setImg(e.target.value)} />
+          <div>или</div>
+          <input
+            style={{ width: '300px' }}
+            type="file"
+            accept="image/*"
+            onChange={(e) => handleFileChange(e)}
+          />
+          <button className='btn' type="button" onClick={(e) => handleServicePut(e)}>
+            Сохранить
+          </button>
+        </>
+      )}
+      <div className='itemrow'>
+      <div className='itemName'>Название салона:</div>
+      <div className='iteminfo'>{service?.title}</div>
+      </div>
+      <div className='itemrow'>
+      <div className='itemName'>Адрес салона: </div>
+      <div className='iteminfo'>{service?.adress}</div>
+      </div>
+      <div className='itemrow'>
+          
+      <div className='itemName'>Email:</div>
+      <div className='iteminfo'>{service?.email}</div>
+      </div>
+      <div className='itemrow'>
+         
+      <div className='itemName'>Номер телефона:</div>
+      <div className='iteminfo'>{service?.phone}</div>
+      </div>
+      <div className='itemrow'>
+      <div className='itemName'>Ваш тариф:</div>
+      <div className='iteminfo'>{service?.tarif}</div>
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <button type="submit" onClick={() => navigate(`/services/${service.id}`)}>
-          Добавить услуги
-        </button>
+           <button className='btn' type="submit" onClick={() => navigate(`/services/${service.id}`)}>
+        Добавить услуги
+      </button>
+      <Calendarr />
         <div style={{ color: 'white', fontSize: '13px' }}>
           <button
             style={{ width: '30vw' }}

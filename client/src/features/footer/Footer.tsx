@@ -1,81 +1,74 @@
 import React from 'react';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-import '../footer/style/style.css';
+import './style/style.css';
 import { NavLink, Outlet } from 'react-router-dom';
 import { BiSolidToTop } from 'react-icons/bi';
 import pic from '../../images/7.png';
 
 function Footer(): JSX.Element {
   return (
-    <>
-      <div className="footer" id="footer">
-        <div className="box-container">
-          <div className="box">
-            <li className='footeritem'><NavLink className="footerlink" to="/main">
+    <div className="footer" id="footer">
+      <div className="box-container">
+        <div className="box">
+        <h3>Навигация</h3>
+          <li className="footeritem">
+            <NavLink className="footerlink" to="/main">
               На главную
             </NavLink>
-</li>
-            <li className='footeritem'>
-                <NavLink className="footerlink" to="/services">
+          </li>
+          <li className="footeritem">
+            <NavLink className="footerlink" to="/services">
               Сервисы
             </NavLink>
-            </li>
+          </li>
 
-            <li className='footeritem'>
+          <li className="footeritem">
             <NavLink className="footerlink" to="/news">
               Статьи
             </NavLink>
-            </li>
-          
-            <li className='footeritem'>
+          </li>
+
+          <li className="footeritem">
             <NavLink className="footerlink" to="/sales">
               Акции
             </NavLink>
-            </li>
-           
-          </div>
-          <div className="box2">
-            <h3>contact info</h3>
-            <a href="#">
-              {' '}
-              <i className="fas fa-phone"></i> +7777777{' '}
-            </a>
-            <a href="#">
-              {' '}
-              <i className="fas fa-envelope"></i> lapocki@gmail.com{' '}
-            </a>
-            <a href="#">
-              {' '}
-              <i className="fas fa-map-marker-alt"></i> ELBRUS{' '}
-            </a>
-
-            <a href="#">
-              {' '}
-              <i className="fab fa-facebook-f"></i> GITHUB{' '}
-            </a>
-            <a href="#">
-              {' '}
-              <i className="fab fa-linkedin"></i> linkedin{' '}
-            </a>
-          </div>
-
-          <div className="credit shadow">
+          </li>
+        </div>
+        <div className="box2">
+          <h3>Контакты</h3>
+          <a href="#">
             {' '}
-            created by LAPOCHKI
-        
-            <button
-              className="totop"
-              onClick={() => window.scrollTo({ top: 0, bahavior: 'smooth' })}
-            >
-              <BiSolidToTop />
-            </button>
-            <img className='carpic' src={pic} alt='pic' />
-          </div>
-       
+            <i className="fas fa-phone" /> +7777777{' '}
+          </a>
+          <a href="#">
+            {' '}
+            <i className="fas fa-envelope" /> lapocki@gmail.com{' '}
+          </a>
+          <a href="https://elbrusboot.camp/">
+            {' '}
+            <i className="fas fa-map-marker-alt" /> ELBRUS{' '}
+          </a>
+
+          <a href="#">
+            {' '}
+            <i className="fab fa-facebook-f"/> GITHUB{' '}
+          </a>
+          <a href="#">
+            {' '}
+            <i className="fab fa-linkedin"/> linkedin{' '}
+          </a>
+        </div>
+
+        <div className="credit shadow">
+          {' '}
+          created by LAPOCHKI
+          <button className="totop" onClick={() => window.scrollTo({ top: 0, bahavior: 'smooth' })}>
+            <BiSolidToTop />
+          </button>
+         
+          <img className="carpic" src={pic} alt="pic" />
         </div>
       </div>
-     
-    </>
+    </div>
   );
 }
 

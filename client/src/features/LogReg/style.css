@@ -12,3 +12,8 @@
 .form-btn {
   width: 200px;
 }
+.signinservice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

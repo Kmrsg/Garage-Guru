@@ -25,7 +25,7 @@ function SignInService(): JSX.Element {
   };
 
   return (
-    <div>
+    <div className='signinservice'>
       {signService === true ? (
         <SignUpService />
       ) : (
@@ -36,9 +36,10 @@ function SignInService(): JSX.Element {
               style={{ display: 'flex', flexDirection: 'column' }}
               onSubmit={(e) => void onHandleServiceIn(e)}
             >
-              <label htmlFor="a">
-                Email
-                <input
+              <label className='itemrow' htmlFor="a">
+              <p className='itemName'>  Email</p> 
+            <p className='iteminfo'>
+            <input
                   value={email}
                   placeholder="email"
                   onChange={(e) => setEmail(e.target.value)}
@@ -46,10 +47,14 @@ function SignInService(): JSX.Element {
                   type="text"
                   required
                 />
+            </p>
+               
+             
               </label>
-              <label htmlFor="d">
-                Password
-                <input
+              <label className='itemrow' htmlFor="d">
+              <p className='itemName'> Пароль</p> 
+            <p className='iteminfo'>
+            <input
                   value={password}
                   placeholder="password"
                   onChange={(e) => setPassword(e.target.value)}
@@ -57,16 +62,19 @@ function SignInService(): JSX.Element {
                   type="password"
                   required
                 />
+            </p>
+          
               </label>
-              <button type="submit" onClick={() => setSubmitted(true)}>
-                Submit
-              </button>
-              <button type="submit">Забыли пароль?</button>
-              {submitted === true && service.error && <h3>{service.error}</h3>}
-            </form>
-            <button type="submit" onClick={() => setSignService(true)}>
-              Регистрация
-            </button>
+                        <div className='btns'></div>
+                        <button className='btn' type="submit" onClick={() => setSubmitted(true)}>
+                          Войти
+                        </button>
+                        <button className='btn' type="submit">Забыли пароль?</button>
+                        {submitted === true && service.error && <h3>{service.error}</h3>}
+                      </form>
+                      <button className='btn' type="submit" onClick={() => setSignService(true)}>
+                        Зарегистрироваться
+                      </button>
           </div>
         </>
       )}

@@ -32,19 +32,24 @@ export default function CommentItem({
       <div className="comm-content">
         {' '}
         <section className="user-name">
-          <p>{comment.User.name}</p>
+          <p className='commname'>{comment.User.name}</p>
         </section>
         <section className="comm-rate">
           <ReactStars value={rating} edit={false} count={5} size={10} activeColor="#ffd700" />
-          <p>{new Date(comment.updatedAt).toLocaleDateString('ru-Ru')}</p>
+          <div className='commdate'>{new Date(comment.updatedAt).toLocaleDateString('ru-Ru')}</div>
         </section>
-      </div>
-      <p>{comment.text}</p>
-      {user?.id === comment.user_id && (
-        <button type="button" onClick={onHandleDelete}>
+        {user?.id === comment.user_id && (
+        <button className='btnround' type="button" onClick={onHandleDelete}>
           X
         </button>
       )}
+      </div>
+      <div className='commtext'>{comment.text}</div>
+      {/* {user?.id === comment.user_id && (
+        <button className='btnround' type="button" onClick={onHandleDelete}>
+          X
+        </button>
+      )} */}
     </div>
   );
 }

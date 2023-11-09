@@ -56,49 +56,59 @@ function SignUpService(): JSX.Element {
               void onHandleServiceAdd(e);
             }}
           >
-            <label className='form-label' htmlFor="a">
-              Название сервиса
-              <input
+{/* form-label */}
+            <label className='itemrow' htmlFor="a">
+            <p className='itemName'> Название сервиса</p> 
+            <p className='iteminfo'> <input
                 placeholder="title"
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 required
-              />
+              /></p>
+           
+             
             </label>
-            <label className='form-label' htmlFor="a">
-              Email
-              <input
+            <label className='itemrow' htmlFor="a">
+            <p className='itemName'> Email</p> 
+            <p className='iteminfo'>   <input
                 placeholder="email"
                 type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-              />
+              /></p>
+             
+           
             </label>
-            <label className='form-label' htmlFor="a">
-              Пароль
-              <input
+            <label className='itemrow' htmlFor="a">
+            <p className='itemName'> Пароль</p> 
+            <p className='iteminfo'>   <input
                 placeholder="password"
                 type="text"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-              />
+              /></p>
+
+           
             </label>
-            <label className='form-label' htmlFor="a">
-              Адрес сервиса
-              <input
+            <label className='itemrow' htmlFor="a">
+            <p className='itemName'> Адрес сервиса</p> 
+            <p className='iteminfo'>  <input
                 placeholder="adress"
                 type="text"
                 value={adress}
                 onChange={(e) => setAdress(e.target.value)}
                 required
-              />
+              /></p>
+             
+            
             </label>
-            <label className='form-label' htmlFor="a">
-              Телефон +7
-              <input
+            <label className='itemrow' htmlFor="a">
+            <p className='itemName'>Телефон +7</p> 
+            <p className='iteminfo'>
+            <input
                 placeholder="phone"
                 type="tel"
                 name="tel"
@@ -114,16 +124,23 @@ function SignUpService(): JSX.Element {
                 }}
                 required
               />
+            </p>
+              
+            
             </label>
-            <label className='form-label' htmlFor="a">
-              Тариф
-              <select style={{ width: '300px' }} id="selectClickService">
+            <label className='itemrow' htmlFor="a">
+            <p className='itemName'>Тариф</p> 
+            <p className='iteminfo'>
+            <select style={{ width: '300px' }} id="selectClickService">
                 <option value="Service" disabled selected>
                   Выберите тариф
                 </option>
                 <option value="5000$">На месяц 5000$</option>
                 <option value="10000$">На год 10000$</option>
               </select>
+            </p>
+              
+           
             </label>
             <div className='btns'>
             <button className='btn' type="submit">Зарегистрироваться</button>
