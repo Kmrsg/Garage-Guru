@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import type { Service } from '../LogReg/type';
 import { useAppDispatch, type RootState } from '../../redux/store';
 import Calendarr from './Calendar';
 import { updatePhoto } from '../LogReg/AuthSlice';
@@ -10,7 +9,6 @@ function PersonalArea(): JSX.Element {
   const [photo, setPhoto] = useState(true);
   const dispatch = useAppDispatch();
   const service = useSelector((store: RootState) => store.auth.service);
-  const user = useSelector((store: RootState) => store.auth.user);
   const [img, setImg] = useState(service?.img);
 
   // const handleServicePut = (e: React.MouseEvent<HTMLButtonElement>): void => {

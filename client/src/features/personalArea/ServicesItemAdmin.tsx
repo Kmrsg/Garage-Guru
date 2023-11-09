@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import type { Service } from '../LogReg/type';
 import { useAppDispatch } from '../../redux/store';
 import { deleteOneService, upStatusService } from '../service/servicesSlice';

@@ -8,8 +8,6 @@ function PersonalAreaPerson(): JSX.Element {
   const order = useSelector((store: RootState) => store.uslugas.orders).find(
     (el) => el.user_id === user?.id,
   );
-  //   store.uslugas.orders.find((el) => el.user_id === user?.id),
-  // );
   const orders = order?.OrderItems;
   console.log(orders);
 

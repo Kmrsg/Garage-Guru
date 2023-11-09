@@ -11,15 +11,17 @@ router.get('/', async (req, res) => {
 });
 router.post('/', async (req, res) => {
   try {
-    const { carModel_id, mark_id, service_id, cost, usluga_id } = req.body;
-    const uslugaPrice = await UslugaPrice.create({
-      carModel_id,
-      mark_id,
-      service_id,
-      cost: +cost,
-      usluga_id,
-    });
-    res.json(uslugaPrice);
+    if (req.session.serviceId) {
+      const { carModel_id, mark_id, service_id, cost, usluga_id } = req.body;
+      const uslugaPrice = await UslugaPrice.create({
+        carModel_id,
+        mark_id,
+        service_id,
+        cost: +cost,
+        usluga_id,
+      });
+      res.json(uslugaPrice);
+    }
   } catch ({ message }) {
     res.status(500).json({ message });
   }

@@ -18,26 +18,26 @@ function AddNewsForm(): JSX.Element {
     <div className="form__container">
       <form className="form__add-post" onSubmit={(e) => onHandleSubmit(e)}>
         <label className="form__label">
-          Фото  
+          Фото
           <input value={img} onChange={(e) => setImg(e.target.value)} type="text" />
         </label>
         <label className="form__label ">
-          Текст статьи  
-        {/* это старый рабочий вариант с кривым инпутом */}
-           {/* <input
+          Текст статьи
+          {/* это старый рабочий вариант с кривым инпутом */}
+          {/* <input
             className="biginput"
             value={text}
             onChange={(e) => setText(e.target.value)}
             type="text"
           />  */}
- 
-         <textarea minlength="20"
+          <textarea
+            minLength={20}
             className="biginput"
             value={text}
             onChange={(e) => setText(e.target.value)}
-            type="text" />
-             </label>
- 
+            type="text"
+          />
+        </label>
 
         <button className="addbtn" type="submit">
           Добавить статью

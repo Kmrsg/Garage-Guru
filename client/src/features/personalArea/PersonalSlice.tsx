@@ -6,13 +6,6 @@ export const updatePhoto = createAsyncThunk('update/photo', (obj: Service) =>
   fetchUpdatePhoto(obj),
 );
 
-// export const upStatusService = createAsyncThunk('update/status', (id: Service) =>
-//   fetchUpdateStatus(id),
-// );
-// export const deleteOneService = createAsyncThunk('update/status', (id: Service) =>
-//   fetchDeleteOne(id),
-// );
-
 const initialState: AuthState = {
   user: undefined,
   service: undefined,
@@ -27,18 +20,6 @@ const personSlice = createSlice({
     builder.addCase(updatePhoto.rejected, (state, action) => {
       state.error = action.error.message ? action.error.message : null;
     });
-    // .addCase(upStatusService.fulfilled, (state, action) => {
-    //   console.log(action.payload);
-    //   console.log(state.service);
-
-    //   if (action.payload.message === 'success') {
-    //     state.service = action.payload.service;
-    //   }
-    // })
-
-    // .addCase(upStatusService.rejected, (state, action) => {
-    //   state.error = action.error.message ? action.error.message : null;
-    // });
   },
 });
 

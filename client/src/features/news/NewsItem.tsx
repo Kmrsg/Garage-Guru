@@ -5,7 +5,6 @@ import type { Post } from './types/Post';
 import './style/style.css';
 import { deleteNews } from './newsSlice';
 import ChangeNewsForm from './ChangeNewsForm';
-import { RootState } from '../../redux/store';
 
 function PostItem({ post }: { post: Post }): JSX.Element {
   const [modalActive, setModalActive] = useState(false);

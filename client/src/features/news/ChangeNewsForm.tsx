@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import './style/modal.css';
-import { RootState, useAppDispatch } from '../../redux/store';
-import { addNews, changeNews } from '../news/newsSlice';
-import { useSelector } from 'react-redux';
-import { Post } from './types/Post';
+import { useAppDispatch } from '../../redux/store';
+import { changeNews } from './newsSlice';
+import type { Post } from './types/Post';
 
 function ChangeNewsForm({
   post,
@@ -16,12 +15,12 @@ function ChangeNewsForm({
   const [text, setText] = useState(post?.text);
   1;
   const dispatch = useAppDispatch();
-  const onHandleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-    dispatch(addNews({ img, text }));
-    setImg('');
-    setText('');
-  };
+  // const onHandleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+  //   e.preventDefault();
+  //   dispatch(addNews({ img, text }));
+  //   setImg('');
+  //   setText('');
+  // };
   const onHandleChange = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     dispatch(changeNews({ id: post.id, img, text }));
@@ -38,7 +37,7 @@ function ChangeNewsForm({
         <label className="form__label ">
           Текст статьи
           <textarea
-            minlength="20"
+            minLength={20}
             className="biginput"
             value={text}
             onChange={(e) => setText(e.target.value)}

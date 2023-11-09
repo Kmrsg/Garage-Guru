@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { logOut } from '../LogReg/AuthSlice';
@@ -25,31 +25,28 @@ function NavBar(): JSX.Element {
   return (
     <>
       <div className="collapse navbar-collapse" id="navbarResponsive">
-      <img className='picnav' src={picnav} alt='pic' />
+        <img className="picnav" src={picnav} alt="pic" />
         <div className="nav-item">
-     
           <label className="form-label">
             Выберите город
-        
-              <select
-                onChange={(e) => dispatch(chooseCity(e.target.value))}
-                id="group"
-                name="groupGold"
-              >
-                <option className="gold" value="Санкт-петербург">
-                  Санкт-Петербург
-                </option>
-                <option className="gold" value="Москва">
-                  Москва
-                </option>
-                <option className="gold" value="Казань">
-                  Казань
-                </option>
-                <option className="gold" value="Екатеринбург">
-                  Екатеринбург
-                </option>
-              </select>
-           
+            <select
+              onChange={(e) => dispatch(chooseCity(e.target.value))}
+              id="group"
+              name="groupGold"
+            >
+              <option className="gold" value="Санкт-петербург">
+                Санкт-Петербург
+              </option>
+              <option className="gold" value="Москва">
+                Москва
+              </option>
+              <option className="gold" value="Казань">
+                Казань
+              </option>
+              <option className="gold" value="Екатеринбург">
+                Екатеринбург
+              </option>
+            </select>
           </label>
         </div>
         <li className="nav-item">
