@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import type { RootState } from '../../redux/store';
-import { useAppDispatch } from '../../redux/store';
+import store, { useAppDispatch } from '../../redux/store';
 import type { UslugaPrice } from './types/types';
 import './style/style.css';
 import { deletePrice } from './uslugaPriceSlice';
@@ -16,6 +16,15 @@ export default function PriceItem({ price }: { price: UslugaPrice }): JSX.Elemen
   const [rega, setRega] = useState(false);
   const serviceAuth = useSelector((store: RootState) => store.auth.service);
   const userAuth = useSelector((store: RootState) => store.auth.user);
+  const [tachka, setTachka] = useState([]);
+
+  const service = useSelector((store: RootState) =>
+    store.servicesSlice.services.map((servicee) =>
+      servicee.UslugaPrices.filter((el) => el.cost < price.cost),
+    ),
+  );
+  console.log(service);
+
   const [plan, setPlan] = useState(false);
 
   const handleButtonClick = (): void => {
@@ -34,7 +43,7 @@ export default function PriceItem({ price }: { price: UslugaPrice }): JSX.Elemen
   };
 
   const navigate = useNavigate();
-
+  service.map((el) => el.length > 0 && el.map((el) => tachka.push(el)));
   return (
     <div className="price-item">
       <h4 className="itemrow">
@@ -81,11 +90,7 @@ export default function PriceItem({ price }: { price: UslugaPrice }): JSX.Elemen
           )}
         </>
       )}
-      {/* {userAuth ? (
-      
-      ) : (
-     
-      )} */}
+
       {rega === true && (
         <div className="zPlan">
           <div className="containerPay" style={{ color: 'black' }}>
@@ -95,7 +100,7 @@ export default function PriceItem({ price }: { price: UslugaPrice }): JSX.Elemen
           </div>
         </div>
       )}
-      {plan && <AddOrderWindow price={price} onClose={() => setPlan(false)} />}
+      {plan && <AddOrderWindow tachka={tachka} price={price} onClose={() => setPlan(false)} />}
       {flag && <UpdateUslugaForm price={price} onHandleFlag={onHandleFlag} />}
     </div>
   );

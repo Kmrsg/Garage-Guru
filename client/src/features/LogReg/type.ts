@@ -33,6 +33,7 @@ export type Auth2 = {
   user: User | undefined;
   service: ServiceCard | undefined;
   error: string | null;
+  loading: boolean;
 };
 export type UslugaPrice = {
   OrderItems: any;

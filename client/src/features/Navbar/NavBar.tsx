@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { logOut } from '../LogReg/AuthSlice';
 import './style/style.css';
@@ -17,9 +17,10 @@ function NavBar(): JSX.Element {
   const dispatch = useAppDispatch();
   const user = useSelector((store: RootState) => store.auth.user);
   const service = useSelector((store: RootState) => store.auth.service);
-
+  const navigate = useNavigate();
   const onHandleLogout = async (): Promise<void> => {
     dispatch(logOut()).catch(console.log);
+    navigate('/main');
   };
 
   return (
@@ -72,7 +73,7 @@ function NavBar(): JSX.Element {
         </li>
         {service || user ? (
           <>
-            <NavLink className="nav-item" onClick={onHandleLogout} to="/">
+            <NavLink className="nav-item" onClick={onHandleLogout} to="/main">
               Выйти
             </NavLink>
             {user && <div className="nav-hello">{user.name}</div>}
@@ -120,7 +121,10 @@ function NavBar(): JSX.Element {
         )}{' '}
       </div>
       {service?.isChecked === false && (
-        <span className="centered-text" style={{ textAlign: 'center', fontSize: '15px' }}>
+        <span
+          className="centered-text"
+          style={{ textAlign: 'center', fontSize: '15px', color: 'white' }}
+        >
           Ваш аккаунт находится на проверке, после успешной аутентификации ваш профиль станет
           активным и пользователи смогут записаться или связаться с вами.
         </span>

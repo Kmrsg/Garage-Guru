@@ -1,7 +1,7 @@
-const router = require('express').Router();
-const { OrderItem } = require('../../db/models');
+const router = require("express").Router();
+const { OrderItem } = require("../../db/models");
 
-router.put('/:orderItemId', async (req, res) => {
+router.put("/:orderItemId", async (req, res) => {
   try {
     const { orderItemId } = req.params;
     const { uslugaPrice_id } = req.body;
@@ -12,12 +12,13 @@ router.put('/:orderItemId', async (req, res) => {
     ) {
       orderItem.isClosed = true;
       orderItem.save();
-      res.json({ message: 'success', orderItem, uslugaPrice_id });
+      res.json({ message: "success", orderItem, uslugaPrice_id });
     }
   } catch ({ message }) {
     res.json({ message });
   }
 });
+
 
 router.get('/', async (req, res) => {
   try {

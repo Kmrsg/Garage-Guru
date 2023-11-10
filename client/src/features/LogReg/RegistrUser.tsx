@@ -15,6 +15,7 @@ function SignIn(): JSX.Element {
   const [sign, setSign] = useState(false);
   const [status, setStatus] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [erorka, setErorka] = useState('');
   const dispatch = useAppDispatch();
   const user = useSelector((store: RootState) => store.auth.user);
   const errorUser = useSelector((store: RootState) => store.auth.error);
@@ -53,7 +54,7 @@ function SignIn(): JSX.Element {
   };
   useEffect(() => {
     if (user || service) {
-      navigate('/');
+      navigate('/main');
     }
     fontSelectClick();
     fontService();
@@ -79,7 +80,12 @@ function SignIn(): JSX.Element {
               <form
                 style={{ display: 'flex', flexDirection: 'column' }}
                 onSubmit={(e) => {
-                  void onHandleSignIn(e);
+                  if (phone.length < 12) {
+                    setErorka('Пожалуйста, заполните поле tелефон полностью.');
+                    e.preventDefault();
+                  } else {
+                    onHandleSignIn(e);
+                  }
                 }}
               >
                 <label className="itemrow" htmlFor="a">
@@ -120,15 +126,20 @@ function SignIn(): JSX.Element {
                       maxLength={11}
                       value={phone}
                       onChange={(e) => {
-                        const phoneWithoutDashes = e.target.value.replace(/-/g, ''); // Удаляем все существующие дефисы из значения ввода
-                        const phoneWithDashes = phoneWithoutDashes.replace(
-                          /(\d{3})(\d{3})(\d{2})(\d{2})/g,
-                          '$1-$2-$3-$4',
-                        ); // Добавляем дефисы после каждой третьей цифры
-                        setPhone(phoneWithDashes);
+                        const input = e.target.value;
+                        if (input.length >= 0 && input.length <= 12) {
+                          // Валидный ввод, обновляем значение состояния
+                          const phoneWithoutDashes = input.replace(/-/g, '');
+                          const phoneWithDashes = phoneWithoutDashes.replace(
+                            /(\d{3})(\d{3})(\d{2})(\d{2})/g,
+                            '$1-$2-$3-$4',
+                          );
+                          setPhone(phoneWithDashes);
+                        }
                       }}
                       required
-                    />{' '}
+                    />
+                    <div style={{ color: 'white', position: 'absolute' }}>{erorka}</div>
                   </p>
                 </label>
                 <label className="itemrow" htmlFor="d">

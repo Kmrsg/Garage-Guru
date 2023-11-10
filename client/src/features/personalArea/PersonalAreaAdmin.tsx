@@ -25,8 +25,8 @@ function PersonalAreaAdmin(): JSX.Element {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user?.id !== 1 && serviceAuth) {
-      navigate('/');
+    if ((user?.id !== 1 && serviceAuth) || (!user && !service)) {
+      navigate('/main');
     }
   }, []);
 

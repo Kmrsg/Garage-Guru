@@ -1,14 +1,16 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useAppDispatch, RootState } from '../../redux/store';
 import { useNavigate, useParams } from 'react-router-dom';
-import type { RootState } from '../../redux/store';
 import SaleItem from '../sales/SaleItem';
 import UslugaContainter from '../usluga/UslugaContainter';
 import AddSaleForm from './AddSaleForm';
 import CommentsContainer from './CommentsContainer';
 import './style/style.css';
 import picservis from '../../images/4.png';
+import { stopLoading } from './servicesSlice';
+import spinner from '../../assets/Spinner-1s-200px.svg';
 
 export default function ServicePage(): JSX.Element {
   const { serviceId } = useParams();
@@ -19,6 +21,14 @@ export default function ServicePage(): JSX.Element {
   );
 
   const serviceAuth = useSelector((store: RootState) => store.auth.service);
+  const dispatch = useAppDispatch;
+  const loading = useSelector((store: RootState) => store.uslugas.loading);
+  const error = useSelector((store: RootState) => store.uslugas.error);
+  const spin = <img src={spinner} alt="preloader" />;
+  const checkError = <h1 style={{ color: 'red' }}>{error}</h1>;
+  setTimeout(() => dispatch(stopLoading()), 10);
+  const content = (
+
   const user = useSelector((store: RootState) => store.auth.user);
 
   if (
@@ -51,7 +61,7 @@ export default function ServicePage(): JSX.Element {
         </div>
         {flag === 'sale' ? (
           <div className="sales-container">
-            {serviceAuth && serviceAuth.id === service?.id && <AddSaleForm service={service!} />}
+            {serviceAuth && serviceAuth.id === service?.id && <AddSaleForm service={service} />}
             {service?.Sales.map((sale) => <SaleItem sale={sale} key={sale.id} />)}
           </div>
         ) : flag === 'usluga' ? (
@@ -62,4 +72,5 @@ export default function ServicePage(): JSX.Element {
       </div>
     </div>
   );
+  return <>{loading ? spin : <div>{error ? checkError : content}</div>}</>;
 }
