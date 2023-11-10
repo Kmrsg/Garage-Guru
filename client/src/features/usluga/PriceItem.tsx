@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import type { RootState } from '../../redux/store';
-import store, { useAppDispatch } from '../../redux/store';
+import { useAppDispatch } from '../../redux/store';
 import type { UslugaPrice } from './types/types';
 import './style/style.css';
 import { deletePrice } from './uslugaPriceSlice';
@@ -23,7 +23,6 @@ export default function PriceItem({ price }: { price: UslugaPrice }): JSX.Elemen
       servicee.UslugaPrices.filter((el) => el.cost < price.cost),
     ),
   );
-  console.log(service);
 
   const [plan, setPlan] = useState(false);
 
@@ -43,7 +42,7 @@ export default function PriceItem({ price }: { price: UslugaPrice }): JSX.Elemen
   };
 
   const navigate = useNavigate();
-  service.map((el) => el.length > 0 && el.map((el) => tachka.push(el)));
+  service.forEach((el) => el.length > 0 && el.map((el) => tachka.push(el)));
   return (
     <div className="price-item">
       <h4 className="itemrow">
