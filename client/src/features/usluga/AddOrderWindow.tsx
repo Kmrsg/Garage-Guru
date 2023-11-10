@@ -20,8 +20,6 @@ function AddOrderWindow({
 }): JSX.Element {
   const [dateTimeValue, setDateTimeValue] = useState('');
   const authUser = useSelector((store: RootState) => store.auth.user);
-  const services = useSelector((store: RootState) => store.servicesSlice);
-  console.log(services);
 
   const dispatch = useAppDispatch();
 
@@ -37,7 +35,7 @@ function AddOrderWindow({
         el.Usluga?.title === price.Usluga?.title,
     );
 
-  console.log(uslovie);
+  console.log(tachka);
 
   const handlePaymentClick = (): void => {
     if (authUser) {
