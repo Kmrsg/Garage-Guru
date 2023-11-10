@@ -1,7 +1,19 @@
 const router = require('express').Router();
-const { Service } = require('../../db/models');
+const {
+  Service,
+  Sale,
+  UslugaPrice,
+  Mark,
+  CarModel,
+  Usluga,
+  Comment,
+  User,
+  Rate,
+  OrderItem,
+  Order,
+} = require('../../db/models');
 
-router.put("/person/:serviceId", async (req, res) => {
+router.put('/person/:serviceId', async (req, res) => {
   try {
     const { serviceId } = req.params;
     const { img } = req.body;
@@ -19,9 +31,29 @@ router.put("/person/:serviceId", async (req, res) => {
 router.put('/person/status/:serviceId', async (req, res) => {
   try {
     const { serviceId } = req.params;
-    const service = await Service.findOne({ where: { id: +serviceId } });
+    const service = await Service.findOne({
+      where: { id: +serviceId },
+      include: [
+        { model: Sale },
+        { model: Rate },
+        { model: Comment, include: [User] },
+        {
+          model: UslugaPrice,
+          include: [
+            Mark,
+            CarModel,
+            Usluga,
+            {
+              model: OrderItem,
+              include: { model: Order, include: { model: User } },
+            },
+          ],
+        },
+      ],
+    });
     service.isChecked = !service.isChecked;
     service.save();
+    console.log(service);
     res.json({ message: 'success', service: service });
   } catch ({ message }) {
     res.json({ message });

@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import type { RootState } from '../../redux/store';
 import SaleItem from '../sales/SaleItem';
 import UslugaContainter from '../usluga/UslugaContainter';
@@ -13,10 +13,21 @@ import picservis from '../../images/4.png';
 export default function ServicePage(): JSX.Element {
   const { serviceId } = useParams();
   const [flag, setFlag] = useState('usluga');
+  const navigate = useNavigate();
   const service = useSelector((store: RootState) =>
     store.servicesSlice.services.find((servicee) => serviceId && servicee.id === +serviceId),
   );
+
   const serviceAuth = useSelector((store: RootState) => store.auth.service);
+  const user = useSelector((store: RootState) => store.auth.user);
+
+  if (
+    (service && !service.isChecked) ||
+    (user && !user.isAdmin) ||
+    (serviceAuth && service && service.id !== serviceAuth.id)
+  ) {
+    navigate('/services');
+  }
 
   return (
     <div className="services-page">
