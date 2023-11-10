@@ -20,7 +20,7 @@ function NavBar(): JSX.Element {
   const navigate = useNavigate();
   const onHandleLogout = async (): Promise<void> => {
     dispatch(logOut()).catch(console.log);
-    navigate('/main');
+    navigate('/');
   };
 
   return (
@@ -52,7 +52,7 @@ function NavBar(): JSX.Element {
           </label>
         </div>
         <li className="nav-item">
-          <NavLink className="navlink" to="/main">
+          <NavLink className="navlink" to="/">
             На главную
           </NavLink>
         </li>
@@ -73,7 +73,7 @@ function NavBar(): JSX.Element {
         </li>
         {service || user ? (
           <>
-            <NavLink className="nav-item" onClick={onHandleLogout} to="/main">
+            <NavLink className="nav-item" onClick={onHandleLogout} to="/">
               Выйти
             </NavLink>
             {user && <div className="nav-hello">{user.name}</div>}

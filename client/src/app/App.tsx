@@ -39,7 +39,7 @@ function App(): JSX.Element {
 
   useEffect(() => {
     if (user || service) {
-      navigate('/main');
+      navigate('/');
     }
     dispatch(checkService());
     dispatch(checkUser());
@@ -66,7 +66,7 @@ function App(): JSX.Element {
       <Routes>
         <Route path="/" element={<NavBar />}>
           <Route path="/reg" element={<SignIn />} />
-          <Route path="/main" element={<MainPage />} />
+          <Route path="/" element={<MainPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/services/:serviceId" element={<ServicePage />} />
           <Route path="/news" element={<NewsBlock />} />

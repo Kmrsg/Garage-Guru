@@ -34,7 +34,7 @@ function SignUpService(): JSX.Element {
   const navigate = useNavigate();
   useEffect(() => {
     if (service) {
-      navigate('/main');
+      navigate('/');
     }
     fontService();
   }, [tarif, service]);
@@ -146,7 +146,7 @@ function SignUpService(): JSX.Element {
                   }}
                   required
                 />
-                <div style={{ color: 'white', position: 'absolute', }}>{teleponik}</div>
+                <div style={{ color: 'white', position: 'absolute' }}>{teleponik}</div>
               </p>
             </label>
             <label className="itemrow" htmlFor="a">

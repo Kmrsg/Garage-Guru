@@ -17,8 +17,10 @@ export default function CommentsContainer({ service }: { service: ServiceCard })
     (zakaz) =>
       user &&
       zakaz.user_id === user.id &&
-      zakaz.OrderItems.filter((item) => item.service_id === service.id && item.isClosed),
+      zakaz.OrderItems.filter((item) => item.service_id === service.id && item.isClosed === true)
+        .length > 0,
   );
+  console.log(order);
 
   const onHandleRate = (newRate: number): void => {
     setRating(newRate);
@@ -58,7 +60,7 @@ export default function CommentsContainer({ service }: { service: ServiceCard })
           <button type="submit">Оставить отзыв</button>
         </form>
       )}
-      {err !== '' && <p>{err}</p>}
+      {err !== '' && <p style={{ color: 'white' }}>{err}</p>}
     </div>
   );
 }

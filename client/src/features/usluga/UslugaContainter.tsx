@@ -13,7 +13,7 @@ export default function UslugaContainter({ service }: { service: ServiceCard }):
 
   return (
     <div className="usluga-cont">
-      {/* <AddUslugaForm service={service} /> */}
+      <AddUslugaForm service={service} />
       <div className="prices">
         {prices?.map((price) => <PriceItem price={price} key={price.id} />)}
       </div>

@@ -1,8 +1,9 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useAppDispatch, RootState } from '../../redux/store';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useAppDispatch, RootState } from '../../redux/store';
 import SaleItem from '../sales/SaleItem';
 import UslugaContainter from '../usluga/UslugaContainter';
 import AddSaleForm from './AddSaleForm';
@@ -27,19 +28,18 @@ export default function ServicePage(): JSX.Element {
   const spin = <img src={spinner} alt="preloader" />;
   const checkError = <h1 style={{ color: 'red' }}>{error}</h1>;
   setTimeout(() => dispatch(stopLoading()), 10);
-  const content = (
 
   const user = useSelector((store: RootState) => store.auth.user);
 
-  if (
-    (service && !service.isChecked) ||
-    (user && !user.isAdmin) ||
-    (serviceAuth && service && service.id !== serviceAuth.id)
-  ) {
-    navigate('/services');
-  }
+  // if (
+  //   (service && !service.isChecked) ||
+  //   (user && !user.isAdmin) ||
+  //   (serviceAuth && service && service.id !== serviceAuth.id)
+  // ) {
+  //   navigate('/services');
+  // }
 
-  return (
+  const content = (
     <div className="services-page">
       <div className="post-page">
         <h2 className="servicename">{service?.title}</h2>

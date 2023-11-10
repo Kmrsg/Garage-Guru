@@ -54,7 +54,7 @@ function SignIn(): JSX.Element {
   };
   useEffect(() => {
     if (user || service) {
-      navigate('/main');
+      navigate('/');
     }
     fontSelectClick();
     fontService();

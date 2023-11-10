@@ -19,7 +19,7 @@ function SalesPage(): JSX.Element {
     <div className="containerSaleForm">
       {/* <img src={pic} alt='img'/> */}
       <div className="sales">
-        <div className="sales__container">
+        <div className="sales__container" style={{ background: 'black' }}>
           {services.map((service) =>
             service.adress.split(',').includes(city)
               ? service.Sales.map((sale) => <SaleItem key={sale.id} sale={sale} />)

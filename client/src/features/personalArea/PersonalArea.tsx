@@ -26,7 +26,7 @@ function PersonalArea(): JSX.Element {
 
   useEffect(() => {
     if (!service) {
-      navigate('/main');
+      navigate('/');
     }
   }, [service]);
 
@@ -99,7 +99,7 @@ function PersonalArea(): JSX.Element {
             Мои Записи
           </button>
           {widt && (
-            <div style={{ color: 'white' }}>
+            <div className="containerPay">
               <div>
                 Сортировка:
                 <select
@@ -124,16 +124,16 @@ function PersonalArea(): JSX.Element {
                   </option>
                 </select>
               </div>
-              <div style={{ backgroundColor: 'white', color: 'black', fontSize: '2vh' }}>
+              <div style={{ color: 'black', fontSize: '2vh' }}>
                 {uslugaPrice &&
                   uslovie?.map((el) => (
                     <div style={{ display: 'flex', flexDirection: 'row', width: '50vw' }}>
                       <div
                         style={{
-                          backgroundColor: 'white',
+                          color: 'white',
                           // marginBottom: '20px',
                           paddingBottom: '20px',
-                          color: 'black',
+
                           display: 'flex',
                           flexDirection: 'column',
                         }}

@@ -23,16 +23,21 @@ function AddOrderWindow({
   const services = useSelector((store: RootState) => store.servicesSlice);
   console.log(services);
 
-  // console.log(authUser);
-
   const dispatch = useAppDispatch();
-  // console.log(console.log(authUser));
 
   const handleDateTimeChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setDateTimeValue(event.target.value);
   };
-  // console.log(authUser?.id, price.service_id, dateTimeValue, price.id);
-  console.log(tachka);
+  const uslovie =
+    tachka &&
+    tachka.filter(
+      (el) =>
+        el.CarModel.title === price.CarModel?.title &&
+        el.Mark?.title === price.Mark?.title &&
+        el.Usluga?.title === price.Usluga?.title,
+    );
+
+  console.log(uslovie);
 
   const handlePaymentClick = (): void => {
     if (authUser) {
@@ -54,6 +59,9 @@ function AddOrderWindow({
   return (
     <div id="zPlan">
       <div className="containerPay" style={{ color: 'black', fontSize: '20px' }}>
+        <button type="button" onClick={(prev) => onClose(!prev)}>
+          X
+        </button>
         <div className="itemrow">
           <p className="itemName"> Вид услуги:</p>
           <p className="iteminfo">{price.Usluga.title}</p>
@@ -90,8 +98,8 @@ function AddOrderWindow({
         </button>
         <div>
           Сервисы в которых дешевле:
-          {tachka &&
-            tachka.map((el) => (
+          {uslovie &&
+            uslovie.map((el) => (
               <div className="containerPay" style={{ color: 'white', marginBottom: '10px' }}>
                 <div>
                   Марка: {el.Mark.title}, модель:{el.CarModel.title}
