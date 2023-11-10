@@ -45,7 +45,7 @@ export type OrderAdd = {
   [x: string]: any;
   id: number;
   user_id: number;
-  // OrderItems: OrderItemAdd[];
+  OrderItems: OrderItemAdd[];
   user: User;
 };
 export type OrderItemAdd = {
@@ -55,6 +55,7 @@ export type OrderItemAdd = {
   date: string;
   isClosed: boolean;
   Order: OrderAdd;
+  service_id: number;
 };
 export type UslugasAdd = {
   carModel: CarModel;

@@ -42,8 +42,8 @@ function NavBar(): JSX.Element {
               <option className="gold" value="Москва">
                 Москва
               </option>
-              <option className="gold" value="Казань">
-                Казань
+              <option className="gold" value="Новосибирск">
+                Новосибирск
               </option>
               <option className="gold" value="Екатеринбург">
                 Екатеринбург

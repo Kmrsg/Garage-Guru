@@ -1,8 +1,8 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { useAppDispatch, type RootState } from '../../redux/store';
+import { useAppDispatch, RootState } from '../../redux/store';
+import { useNavigate, useParams } from 'react-router-dom';
 import SaleItem from '../sales/SaleItem';
 import UslugaContainter from '../usluga/UslugaContainter';
 import AddSaleForm from './AddSaleForm';
@@ -15,9 +15,11 @@ import spinner from '../../assets/Spinner-1s-200px.svg';
 export default function ServicePage(): JSX.Element {
   const { serviceId } = useParams();
   const [flag, setFlag] = useState('usluga');
+  const navigate = useNavigate();
   const service = useSelector((store: RootState) =>
     store.servicesSlice.services.find((servicee) => serviceId && servicee.id === +serviceId),
   );
+
   const serviceAuth = useSelector((store: RootState) => store.auth.service);
   const dispatch = useAppDispatch;
   const loading = useSelector((store: RootState) => store.uslugas.loading);
@@ -26,6 +28,18 @@ export default function ServicePage(): JSX.Element {
   const checkError = <h1 style={{ color: 'red' }}>{error}</h1>;
   setTimeout(() => dispatch(stopLoading()), 10);
   const content = (
+
+  const user = useSelector((store: RootState) => store.auth.user);
+
+  if (
+    (service && !service.isChecked) ||
+    (user && !user.isAdmin) ||
+    (serviceAuth && service && service.id !== serviceAuth.id)
+  ) {
+    navigate('/services');
+  }
+
+  return (
     <div className="services-page">
       <div className="post-page">
         <h2 className="servicename">{service?.title}</h2>

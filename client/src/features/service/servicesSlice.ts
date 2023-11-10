@@ -97,7 +97,9 @@ const servicesSlice = createSlice({
       .addCase(upStatusService.fulfilled, (state, action) => {
         if (action.payload.message === 'success') {
           state.services = state.services.map((el) =>
-            el.id === action.payload.service.id ? { ...el, service: action.payload.service } : el,
+            el.id === action.payload.service.id
+              ? { ...el, isChecked: action.payload.service.isChecked }
+              : el,
           );
         }
       })

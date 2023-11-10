@@ -13,16 +13,22 @@ export default function CommentsContainer({ service }: { service: ServiceCard })
   const dispatch = useAppDispatch();
   const user = useSelector((store: RootState) => store.auth.user);
   const rate = service.Rates.find((ratee) => ratee.user_id === user?.id);
+  const order = useSelector((store: RootState) => store.uslugas.orders).filter(
+    (zakaz) =>
+      user &&
+      zakaz.user_id === user.id &&
+      zakaz.OrderItems.filter((item) => item.service_id === service.id && item.isClosed),
+  );
+
   const onHandleRate = (newRate: number): void => {
     setRating(newRate);
   };
   const onHandleAddComment = (e: React.FormEvent<HTMLFormElement>): void => {
     setErr('');
     e.preventDefault();
-    if (user && text.trim() && rating > 0) {
+    if (user && text.trim() && rating > 0 && order.length > 0) {
       dispatch(addComments({ service_id: service.id, user_id: user.id!, text, rate: rating }));
       setText('');
-      console.log(service.Comments[service.Comments.length - 1]);
     } else {
       setErr('Заполните все поля!');
     }
@@ -38,7 +44,7 @@ export default function CommentsContainer({ service }: { service: ServiceCard })
           <h3>Отзывов пока нет</h3>
         )}
       </div>
-      {user && !rate && (
+      {user && !rate && order.length > 0 && (
         <form onSubmit={onHandleAddComment}>
           <ReactStars
             onChange={onHandleRate}

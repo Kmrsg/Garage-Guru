@@ -19,13 +19,13 @@ router.put("/:orderItemId", async (req, res) => {
   }
 });
 
-router.get("/", async (req, res) => {
+
+router.get('/', async (req, res) => {
   try {
     const orderItems = await OrderItem.findAll({
       where: { service_id: req.session.serviceId },
     });
 
-    console.log(orderItems);
     res.json(orderItems);
   } catch (error) {
     console.error(error);
