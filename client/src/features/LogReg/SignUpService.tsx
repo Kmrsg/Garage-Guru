@@ -21,22 +21,11 @@ function SignUpService(): JSX.Element {
 
   const dispatch = useAppDispatch();
 
-  const fontService = function (): void {
-    const select = document.getElementById('selectClickService');
-    select?.addEventListener('change', () => {
-      const { value } = select;
-      if (value) {
-        // console.log(value);
-        setTearif(value);
-      }
-    });
-  };
   const navigate = useNavigate();
   useEffect(() => {
     if (service) {
       navigate('/');
     }
-    fontService();
   }, [tarif, service]);
   // console.log(tarif);
 
@@ -152,7 +141,7 @@ function SignUpService(): JSX.Element {
             <label className="itemrow" htmlFor="a">
               <p className="itemName">Тариф</p>
               <p className="iteminfo">
-                <select style={{ width: '300px' }} id="selectClickService">
+                <select style={{ width: '300px' }} onChange={(e) => setTearif(e.target.value)}>
                   <option value="Service" disabled selected>
                     Выберите тариф
                   </option>

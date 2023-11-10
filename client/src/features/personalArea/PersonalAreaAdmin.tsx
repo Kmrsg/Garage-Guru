@@ -10,7 +10,7 @@ function PersonalAreaAdmin(): JSX.Element {
   const user = useSelector((store: RootState) => store.auth.user);
   const service = useSelector((store: RootState) => store.servicesSlice.services);
   const serviceAuth = useSelector((store: RootState) => store.auth.service);
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState('Неактивированные аккаунты');
   const [emailPosik, setEmailPoisk] = useState('');
 
   const filteredServices = service.filter((el) => {

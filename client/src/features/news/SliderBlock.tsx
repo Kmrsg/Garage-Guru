@@ -13,6 +13,7 @@ import SliderItem from './SliderItem';
 
 export default function SliderBlock(): JSX.Element {
   const posts = useSelector((store: RootState) => store.news.posts);
+  console.log(posts);
 
   const sliderRef = useRef<Slider | null>(null);
 

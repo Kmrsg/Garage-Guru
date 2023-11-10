@@ -23,34 +23,32 @@ function ChangeNewsForm({
   };
 
   return (
-    <div className='darkened'>
+    <div className="darkened">
       <div className="modal active">
-      <form className="modal-content active" onSubmit={onHandleChange}>
-        <label className="form__label">
-          Фото статьи
-          <input value={img} onChange={(e) => setImg(e.target.value)} type="text" />
-        </label>
-        <label className="form__label ">
-          Текст статьи
-          <textarea
-            minLength={20}
-            className="biginput"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            type="text"
-          />
-        </label>
+        <form className="modal-content active" onSubmit={onHandleChange}>
+          <label className="form__label">
+            Фото статьи
+            <input value={img} onChange={(e) => setImg(e.target.value)} type="text" />
+          </label>
+          <label className="form__label ">
+            Текст статьи
+            <textarea
+              minLength={20}
+              className="biginput"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+            />
+          </label>
 
-        <button className="btn" type="submit">
-          Сохранить изменения
-        </button>
-        <button onClick={onHandleSetModal} className="btn" type="button">
-          Отмена
-        </button>
-      </form>
+          <button className="btn" type="submit">
+            Сохранить изменения
+          </button>
+          <button onClick={onHandleSetModal} className="btn" type="button">
+            Отмена
+          </button>
+        </form>
+      </div>
     </div>
-    </div>
-    
   );
 }
 

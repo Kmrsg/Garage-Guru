@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import NewsItem from './NewsItem';
 import './style/style.css';
@@ -12,7 +12,6 @@ function NewsBlock(): JSX.Element {
   // const loading = useSelector((store: RootState) => store.news.loading);
   // const checkError = <h1 style={{ color: 'red' }}>{error}</h1>;
   // const spin = <img src={spinner} alt="preloader" />;
-
 
   return (
     <div className="containerPostForm">

@@ -22,7 +22,6 @@ const initialState: Auth2 = {
 
 // export const loadUsers = createAsyncThunk('users/load', () => api.fetchAnimals());
 
-
 export const checkUser = createAsyncThunk('auth/check', () => fetchCheckUser());
 
 export const checkService = createAsyncThunk('auth/check/service', () => fetchCheckService());
@@ -67,7 +66,7 @@ const authSlice = createSlice({
       .addCase(checkService.rejected, (state, action) => {
         state.error = action.error.message ? action.error.message : null;
       })
-      .addCase(checkService.pending, (state, action) => {
+      .addCase(checkService.pending, (state) => {
         state.loading = true;
       })
       .addCase(signUp.fulfilled, (state, action) => {
@@ -76,7 +75,7 @@ const authSlice = createSlice({
       .addCase(signUp.rejected, (state, action) => {
         state.error = action.error.message ? action.error.message : null;
       })
-      .addCase(signUp.pending, (state, action) => {
+      .addCase(signUp.pending, (state) => {
         state.loading = true;
       })
       .addCase(registrService.fulfilled, (state, action) => {
@@ -85,7 +84,7 @@ const authSlice = createSlice({
       .addCase(registrService.rejected, (state, action) => {
         state.error = action.error.message ? action.error.message : null;
       })
-      .addCase(registrService.pending, (state, action) => {
+      .addCase(registrService.pending, (state) => {
         state.loading = true;
       })
       .addCase(signIn.fulfilled, (state, action) => {
@@ -98,7 +97,7 @@ const authSlice = createSlice({
       .addCase(signIn.rejected, (state, action) => {
         state.error = action.error.message ? action.error.message : null;
       })
-      .addCase(signIn.pending, (state, action) => {
+      .addCase(signIn.pending, (state) => {
         state.loading = true;
       })
       .addCase(signInService.fulfilled, (state, action) => {
@@ -111,7 +110,7 @@ const authSlice = createSlice({
       .addCase(signInService.rejected, (state, action) => {
         state.error = action.error.message ? action.error.message : null;
       })
-      .addCase(signInService.pending, (state, action) => {
+      .addCase(signInService.pending, (state) => {
         state.loading = true;
       })
       .addCase(logOut.fulfilled, (state) => {
@@ -120,7 +119,7 @@ const authSlice = createSlice({
         state.error = '';
       })
       .addCase(updatePhoto.fulfilled, (state, action) => {
-        if (state.service && state.service?.id === action.payload.service.id) {
+        if (state.service && state.service.img && state.service?.id === action.payload.service.id) {
           state.service.img = action.payload.service.img;
         } else {
           console.log(console.error);

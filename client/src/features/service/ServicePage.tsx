@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable no-nested-ternary */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, RootState } from '../../redux/store';
@@ -16,7 +16,6 @@ import spinner from '../../assets/Spinner-1s-200px.svg';
 export default function ServicePage(): JSX.Element {
   const { serviceId } = useParams();
   const [flag, setFlag] = useState('usluga');
-  const navigate = useNavigate();
   const service = useSelector((store: RootState) =>
     store.servicesSlice.services.find((servicee) => serviceId && servicee.id === +serviceId),
   );
@@ -27,9 +26,9 @@ export default function ServicePage(): JSX.Element {
   const error = useSelector((store: RootState) => store.uslugas.error);
   const spin = <img src={spinner} alt="preloader" />;
   const checkError = <h1 style={{ color: 'red' }}>{error}</h1>;
-  setTimeout(() => dispatch(stopLoading()), 10);
-
-  const user = useSelector((store: RootState) => store.auth.user);
+  useEffect(() => {
+    setTimeout(() => dispatch(stopLoading()), 10);
+  }, []);
 
   // if (
   //   (service && !service.isChecked) ||
@@ -60,7 +59,7 @@ export default function ServicePage(): JSX.Element {
           </button>
         </div>
         {flag === 'sale' ? (
-          <div className="sales-container">
+          <div className="sales-container" style={{ background: 'black' }}>
             {serviceAuth && serviceAuth.id === service?.id && <AddSaleForm service={service} />}
             {service?.Sales.map((sale) => <SaleItem sale={sale} key={sale.id} />)}
           </div>

@@ -16,7 +16,7 @@ export default function PriceItem({ price }: { price: UslugaPrice }): JSX.Elemen
   const [rega, setRega] = useState(false);
   const serviceAuth = useSelector((store: RootState) => store.auth.service);
   const userAuth = useSelector((store: RootState) => store.auth.user);
-  const [tachka, setTachka] = useState([]);
+  const [tachka] = useState([]);
 
   const service = useSelector((store: RootState) =>
     store.servicesSlice.services.map((servicee) =>
@@ -47,15 +47,15 @@ export default function PriceItem({ price }: { price: UslugaPrice }): JSX.Elemen
     <div className="price-item">
       <h4 className="itemrow">
         <p className="itemName"> Вид услуги:</p>
-        <p className="iteminfo">{price.Usluga.title}</p>
+        <p className="iteminfo">{price.Usluga?.title}</p>
       </h4>
       <h4 className="itemrow">
         <p className="itemName"> Марка: </p>
-        <p className="iteminfo"> {price.Mark.title}</p>
+        <p className="iteminfo"> {price.Mark?.title}</p>
       </h4>
       <h4 className="itemrow">
         <p className="itemName">Модель: </p>
-        <p className="iteminfo">{price.CarModel.title}</p>
+        <p className="iteminfo">{price.CarModel?.title}</p>
       </h4>
       <h4 className="itemrow">
         <p className="itemName"> Цена:</p>

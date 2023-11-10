@@ -109,7 +109,8 @@ input {
 }
 .sales-container {
   height: 800px;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
+  background: black;
 }
 .photo {
   width: 600px;

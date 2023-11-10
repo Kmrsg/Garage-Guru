@@ -1,13 +1,12 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 /* eslint-disable react/self-closing-comp */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 // eslint-disable-next-line import/no-cycle
 import SignUpService from './SignUpService';
 import type { RootState } from '../../redux/store';
 import { useAppDispatch } from '../../redux/store';
-import { signInService, stopLoading } from './AuthSlice';
-import spinner from '../../assets/Spinner-1s-200px.svg';
+import { signInService } from './AuthSlice';
 
 function SignInService(): JSX.Element {
   const [email, setEmail] = useState('');
@@ -15,20 +14,30 @@ function SignInService(): JSX.Element {
   const [password, setPassword] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const service = useSelector((strore: RootState) => strore.auth);
-  const loading = useSelector((store: RootState) => store.auth.loading);
-  const error = useSelector((store: RootState) => store.auth.error);
+  // const loading = useSelector((store: RootState) => store.auth.loading);
+  // const error = useSelector((store: RootState) => store.auth.error);
 
   const dispatch = useAppDispatch();
   const onHandleServiceIn = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
-    void dispatch(signInService({ password, email }));
+    void dispatch(
+      signInService({
+        password,
+        email,
+        id: 0,
+        title: '',
+        adress: '',
+        phone: '',
+        img: '',
+        Sales: [],
+        UslugaPrices: [],
+        Comments: [],
+        Rates: [],
+        isChecked: false,
+        tarif: '',
+      }),
+    );
   };
-
-  // useEffect(() => {
-  //   setTimeout(() => dispatch(stopLoading()), 1000);
-  // }, []);
-
-
 
   return (
     <div className="signinservice">
