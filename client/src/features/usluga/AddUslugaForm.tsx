@@ -16,7 +16,7 @@ export default function AddUslugaForm({ service }: { service: ServiceCard }): JS
   const uslugas = useSelector((store: RootState) => store.uslugas.uslugas);
   const marks = useSelector((store: RootState) => store.uslugas.marks);
   const serviceAuth = useSelector((store: RootState) => store.auth.service);
-  console.log(service);
+  // console.log(service);
 
   const onHandleAdd = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
@@ -44,7 +44,7 @@ export default function AddUslugaForm({ service }: { service: ServiceCard }): JS
 
   return (
     <div className="uslugas">
-      {serviceAuth && serviceAuth.id === service.id && (
+      {serviceAuth && serviceAuth.id === service?.id && (
         <form id="usluga" onSubmit={onHandleAdd}>
           <select name="usluga" value={usluga} onChange={(e) => setUsluga(e.target.value)}>
             <option value="">Выберите услугу</option>

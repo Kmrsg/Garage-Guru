@@ -46,8 +46,9 @@ function PersonalArea(): JSX.Element {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'row', marginLeft: '-20vw' }}>
+    <div style={{ display: 'flex', flexDirection: 'row', marginLeft: '10vw' }}>
       <div className="servicelk">
+        <div className='leftpart'>
         <h1 className="head">Личный кабинет автосервиса</h1>
         <img style={{ width: '400px' }} src={service?.img} alt="photka" />
 
@@ -62,6 +63,7 @@ function PersonalArea(): JSX.Element {
             </button>
           </>
         )}
+        <div className='rowwrapper'>
         <div className="itemrow">
           <div className="itemName">Название салона:</div>
           <div className="iteminfo">{service?.title}</div>
@@ -82,13 +84,15 @@ function PersonalArea(): JSX.Element {
           <div className="itemName">Ваш тариф:</div>
           <div className="iteminfo">{service?.tarif}</div>
         </div>
+        </div>
 
         <button className="btn" type="submit" onClick={() => navigate(`/services/${service?.id}`)}>
           Добавить услуги
         </button>
-
+</div>
+<div className='rightpart'>
         <Calendarr />
-        <div style={{ color: 'white', fontSize: '13px' }}>
+        <div className='calendarstyle'>
           <button
             style={{ width: '30vw' }}
             type="submit"
@@ -149,7 +153,7 @@ function PersonalArea(): JSX.Element {
                               elem.isClosed === selectedOption && (
                                 <div style={{ display: 'flex', flexDirection: 'row' }}>
                                   <div>
-                                    <div>Дата записи: {elem.date}</div>
+                                    <div>Дата записи: {elem.date.slice(0, 10)}</div>
                                     <div>Имя клиента: {elem.Order.User.name}</div>
                                     <div>Email: {elem.Order.User.email}</div>
                                     <div>
@@ -180,6 +184,7 @@ function PersonalArea(): JSX.Element {
             </div>
           )}
         </div>
+      </div>
       </div>
     </div>
   );
