@@ -26,7 +26,7 @@ function PersonalArea(): JSX.Element {
 
   useEffect(() => {
     if (!service) {
-      navigate('/');
+      navigate('/main');
     }
   }, [service]);
 

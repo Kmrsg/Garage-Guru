@@ -1,9 +1,12 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import type { RootState } from '../../redux/store';
+import { useAppDispatch, type RootState } from '../../redux/store';
 import ServiceItem from './ServiceItem';
 import './style/style.css';
 import pic from '../../images/6.png';
+import spinner from '../../assets/Spinner-1s-200px.svg';
+import { stopLoading } from './servicesSlice';
 
 export default function ServicesPage(): JSX.Element {
   const city = useSelector((store: RootState) => store.sales.city);
@@ -12,6 +15,7 @@ export default function ServicesPage(): JSX.Element {
   const marks = useSelector((store: RootState) => store.uslugas.marks);
   const [usluga, setUsluga] = useState('Все');
   const [mark, setMark] = useState('Все');
+
   const services = useSelector((store: RootState) => store.servicesSlice.services)
     .filter((service) => service.adress.split(',').includes(city))
     .filter((service) =>
@@ -24,8 +28,13 @@ export default function ServicesPage(): JSX.Element {
         ? service
         : service.UslugaPrices.some((elem) => elem.Usluga?.title === usluga) && service,
     );
-
-  return (
+  const dispatch = useAppDispatch;
+  const loading = useSelector((store: RootState) => store.uslugas.loading);
+  const error = useSelector((store: RootState) => store.uslugas.error);
+  const spin = <img src={spinner} alt="preloader" />;
+  const checkError = <h1 style={{ color: 'red' }}>{error}</h1>;
+  setTimeout(() => dispatch(stopLoading()), 10);
+  const content = (
     <div className="containerServiceForm">
       <div className="sortServices">
         <img className="carpic" src={pic} alt="pic" />
@@ -73,4 +82,5 @@ export default function ServicesPage(): JSX.Element {
       </div>
     </div>
   );
+  return <>{loading ? spin : <div>{error ? checkError : content}</div>}</>;
 }

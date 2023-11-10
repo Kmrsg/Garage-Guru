@@ -33,6 +33,9 @@ const uslugasSlice = createSlice({
       .addCase(loadOrder.fulfilled, (state, action) => {
         state.orders = action.payload;
       })
+      .addCase(loadOrder.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(addOrder.fulfilled, (state, action) => {
         if (!state.orders.find((order) => order.id === action.payload.id)) {
           state.orders.push(action.payload);

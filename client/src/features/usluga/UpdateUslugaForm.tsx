@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../redux/store';
 import type { RootState } from '../../redux/store';
 import type { UslugaPrice } from './types/types';
 import { updPrice } from './uslugaPriceSlice';
 import './style/style.css';
+import { stopLoading } from './uslugaSlice';
 
 export default function UpdateUslugaForm({
   price,
@@ -41,6 +42,10 @@ export default function UpdateUslugaForm({
     );
     onHandleFlag();
   };
+
+  useEffect(() => {
+    setTimeout(() => dispatch(stopLoading()), 1000);
+  }, []);
 
   return (
     <div className="uslugadiv">

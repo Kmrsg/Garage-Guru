@@ -21,6 +21,7 @@ function MainPage(): JSX.Element {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
   return (
     <div className="wrapper">
       <div className="container">
